@@ -1,0 +1,47 @@
+{
+  "name": "wagmi-template-next-with-rainbowkit",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@fontsource/poppins": "4.5.10",
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/styles": "^4.11.5",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.11.16",
+    "@pangolindex/components": "4.2.0-rc.0",
+    "@pangolindex/sdk": "3.1.3",
+    "@rainbow-me/rainbowkit": "~0.12.1",
+    "@types/react-vertical-timeline-component": "^3.3.3",
+    "@web3-react/core": "^6.1.9",
+    "@web3uikit/core": "^0.4.2",
+    "@web3uikit/icons": "^0.4.1",
+    "@web3uikit/web3": "^0.3.2",
+    "ethers": "^5.7.0",
+    "next": "^13.0.0",
+    "nextjs-fonts": "^0.22.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-multi-carousel": "^2.8.3",
+    "react-player": "^2.12.0",
+    "react-router-dom": "^6.10.0",
+    "react-type-animation": "^3.0.1",
+    "react-vertical-timeline-component": "^3.6.0",
+    "wagmi": "~0.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.31",
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.3",
+    "eslint": "^8.15.0",
+    "eslint-config-next": "^12.1.6",
+    "typescript": "^4.9.4"
+  }
+}
