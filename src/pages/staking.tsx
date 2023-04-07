@@ -1,10 +1,28 @@
+/* eslint @typescript-eslint/no-var-requires: "off" */
+/* eslint-disable complexity */
+/* eslint @typescript-eslint/no-explicit-any: "off" */
+/* eslint-disable arrow-spacing */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable arrow-parens */
+/* eslint-disable arrow-spacing */
+/* eslint-disable prefer-const */
+/* eslint-disable no-undef */
+/* eslint-disable prefer-arrow-callback */
+/* eslint-disable array-callback-return */
 
-import { Box, Grid } from '@mui/material'
+/* eslint @typescript-eslint/no-unused-vars: "off" */
+
+/* eslint-disable etc/no-commented-out-code */
+/* eslint-disable no-loop-func */
+/* eslint-disable no-inline-comments */
+/* eslint-disable no-inline-comments */
+/* eslint @typescript-eslint/no-shadow: "off" */
+/* eslint @typescript-eslint/no-empty-function: "off" */
+import {  Grid } from '@mui/material'
 import { Button, Hero, Input, PlanCard, Typography } from '@web3uikit/core'
 import { ethers } from 'ethers';
 import * as React from 'react'
 import { useContractWrite, useAccount,usePrepareContractWrite, useContractRead } from 'wagmi';
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 
 
 
@@ -12,15 +30,13 @@ export default function Staking() {
   const { address:ethAddress} = useAccount()
 
   const [values, setValues] = React.useState<any>({
-    amount: '',
+    amount: '0',
   });
   const { config:configv1 } = usePrepareContractWrite({
     address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
     abi: stakingABI,
     functionName: 'claimRewards',
       onSuccess(data) {	
-  
-      console.log('Success approve', data)
       },
       onError(data){
       
@@ -37,7 +53,6 @@ export default function Staking() {
     args:[0,ethAddress],
       onSuccess(data) {	
   
-      console.log('Success deposit', data)
       },
       onError(data){
       
@@ -52,7 +67,6 @@ export default function Staking() {
   functionName: 'claimRewards',
     onSuccess(data) {	
 
-    console.log('Success approve', data)
     },
     onError(data){
     
@@ -60,12 +74,12 @@ export default function Staking() {
   }
 
   })  
-    const [myTier2,setTier2]= React.useState<any>("")
+    const [myTier2,setTier2]= React.useState<any>("0")
 
-  const [myTier,setTier]= React.useState<any>("")
-  const [nftCount2,setNFTCOUNT2]= React.useState<any>("")
+  const [myTier,setTier]= React.useState<any>("0")
+  const [nftCount2,setNFTCOUNT2]= React.useState<any>("0")
 
-  const [nftCount,setNFTCOUNT]= React.useState<any>("")
+  const [nftCount,setNFTCOUNT]= React.useState<any>("0")
   const { data:dataWithdraw,write:writeWithdraw } = useContractWrite({
     mode: 'recklesslyUnprepared',
     address: '0x008798daAF682d9716Ba9B47dCfD90a503bd9b66',
@@ -74,7 +88,6 @@ export default function Staking() {
     args:[0,values.amount,ethAddress],
       async onSuccess(data) {	
   
-      console.log('Success deposit', data)
       },
       onError(data){
       
@@ -90,7 +103,6 @@ export default function Staking() {
     args:[0,values.amount,ethAddress],
       async onSuccess(data) {	
   
-      console.log('Success deposit', data)
       },
       onError(data){
       
@@ -103,11 +115,11 @@ export default function Staking() {
   const { data:dataV1,write:writeV1 } = useContractWrite(configv1)
 
   const { data, isLoading, isSuccess, write } = useContractWrite(config)
-const [rewardsv2,setRewardsV2]= React.useState<any>("")
-const [rewardsv1,setRewardsV1]= React.useState<any>("")
-const [balanceOf,setBalance]= React.useState<any>("")
+const [rewardsv2,setRewardsV2]= React.useState<any>("0")
+const [rewardsv1,setRewardsV1]= React.useState<any>("0")
+const [balanceOf,setBalance]= React.useState<any>("0")
 
-const [pending,setPending]= React.useState<any>("")
+const [pending,setPending]= React.useState<any>("0")
 
     const { data:data2 } = useContractRead({
       address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
@@ -309,7 +321,7 @@ const [pending,setPending]= React.useState<any>("")
   };
   return (
     <div
-	key={112}
+	key={'112'}
 
       style={{
         backgroundImage: `url(${"https://cdn.discordapp.com/attachments/907590324627595284/1076218522100826182/blockchain_2.png"})`,
@@ -324,7 +336,7 @@ const [pending,setPending]= React.useState<any>("")
 
       }}
     > <div
-	key={99}
+	key={"99"}
 
     style={{
       paddingTop:100,
@@ -335,7 +347,7 @@ const [pending,setPending]= React.useState<any>("")
     }}
   >
 <Hero
-	key={125}
+	key={"125"}
 
   align="center"
   backgroundURL="https://moralis.io/wp-content/uploads/2021/06/blue-blob-background-2.svg"
@@ -351,7 +363,7 @@ const [pending,setPending]= React.useState<any>("")
 
 </div>
       <div
-	  	key={142}
+	  	key={"142"}
 
     style={{
       paddingTop:100,
@@ -364,19 +376,19 @@ const [pending,setPending]= React.useState<any>("")
   >
     <Grid container
 	
-	key={12}
+	key={"12"}
   justifyContent="center"
   width={"100%"}
   alignItems="center" spacing={3}>
     
   <Grid 
   
-  key={9}
+  key={"923"}
   justifyContent="center"
   alignItems="center" item xs>
    
       <div
-	  	key={120}
+	  	key={"1240"}
 
     style={{
       alignSelf:"center",
@@ -387,15 +399,16 @@ const [pending,setPending]= React.useState<any>("")
     }}
   >
   <PlanCard 
-  key={1}
+  key={"101"}
                 backgroundColor="#F0F8FF"
-                ctaButton={<div><Input
+                ctaButton={<div key={"38231"}><Input
+				key={"3391"}
                   onChange={handleChanges('amount')}
                   label="CootCoin"
                   placeholder="100"
                   />
-                  {dataAllowance&&parseInt(dataAllowance)>=parseInt(values.amount)? <Button disabled={!writeDeposit}  onClick={() => handleDeposit()} style={{ marginTop: 4 }} isFullWidth text="ADD FUNDS" theme="primary" />: <Button disabled={!handleApprove}  onClick={() => handleApprove()} style={{ marginTop: 4 }} isFullWidth text="APPROVE COOT" theme="primary" />}
-                  <Button key={931} disabled={!writeClaimRewards} onClick={() => claimRewardsCoot()} style={{ marginTop: 4 }} isFullWidth text="CLAIM" theme="primary" /><Button key={911} onClick={() => handleWithdraw()} style={{ marginTop: 4 }} isFullWidth text="Withdraw" theme="secondary" /></div>}
+                  {dataAllowance&&parseInt(dataAllowance)>=parseInt(values.amount)? <Button  key={"3371"} disabled={!writeDeposit}  onClick={() => handleDeposit()} style={{ marginTop: 4 }} isFullWidth text="ADD FUNDS" theme="primary" />: <Button  key={"31131"} disabled={!handleApprove}  onClick={() => handleApprove()} style={{ marginTop: 4 }} isFullWidth text="APPROVE COOT" theme="primary" />}
+                  <Button key={"931"} disabled={!writeClaimRewards} onClick={() => claimRewardsCoot()} style={{ marginTop: 4 }} isFullWidth text="CLAIM" theme="primary" /><Button key={"2334"} onClick={() => handleWithdraw()} style={{ marginTop: 4 }} isFullWidth text="Withdraw" theme="secondary" /></div>}
                 features={[
 					"Your Deposited:"+ethers.utils.formatEther(dataUserInfo[0]),
                   "TVL:"+balanceOf.substring(0,12),
@@ -407,18 +420,19 @@ const [pending,setPending]= React.useState<any>("")
                 horizontalLine
                 isCurrentBillingPeriod
                 isCurrentPlan
-                price={<Typography color="#041836" variant="h1" weight="700">{pending&&pending.substring(0,6) + " COOT"}</Typography>}
+                price={<Typography key={"33321"} color="#041836" variant="h1" weight="700">{pending&&pending.substring(0,6) + " COOT"}</Typography>}
                 themeColor="#00D1AE"
                 title="COOT Staking"
-                width="285px" description={<Typography color="#041836" variant="h1" weight="700">{""}</Typography>}    /></div>
+                width="285px" description={<Typography key={"3331"} color="#041836" variant="h1" weight="700">{""}</Typography>}    /></div>
   </Grid>
   <Grid 
   
-  key={7}
+  key={"7666"}
   justifyContent="center"
   alignItems="center" item xs>
    
       <div
+	    key={"72"}
     style={{
       alignSelf:"center",
       display: 'flex',
@@ -428,10 +442,10 @@ const [pending,setPending]= React.useState<any>("")
     }}
   >
   <PlanCard
-  key={2}
+  key={"5"}
       backgroundColor="#F0F8FF"
-      ctaButton={<div><Button key={31} onClick={()=>claimRewardsV1()} isFullWidth text="CLAIM" theme="primary"/> <Button key={32} style={{ marginTop: 4 }} onClick={() => claimRewardsV1()} isFullWidth text="Withdraw old" theme="outline" /></div>}
-      description={<Typography color="#5B8DB9" variant="caption14" weight="550">Your Info</Typography>}
+      ctaButton={<div key={"331"}><Button key={"31"} onClick={()=>claimRewardsV1()} isFullWidth text="CLAIM" theme="primary"/> <Button key={"32"} style={{ marginTop: 4 }} onClick={() => claimRewardsV1()} isFullWidth text="Withdraw old" theme="outline" /></div>}
+      description={<Typography key={"911"} color="#5B8DB9" variant="caption14" weight="550">Your Info</Typography>}
       features={[
         nftCount2+" Cooties",
         myTier2+" Tier",
@@ -441,7 +455,7 @@ const [pending,setPending]= React.useState<any>("")
       horizontalLine
       isCurrentBillingPeriod
       isCurrentPlan
-      price={<Typography color="#041836" variant="h1" weight="700">{rewardsv1+" COOT"}</Typography>}
+      price={<Typography key={"912"} color="#041836" variant="h1" weight="700">{rewardsv1+" COOT"}</Typography>}
       themeColor="#00D1AE"
       title="Staking Cooties V1"
       width="285px"
@@ -450,10 +464,12 @@ const [pending,setPending]= React.useState<any>("")
 
   <Grid 
   
-  key={5}
+  key={"53"}
   justifyContent="center"
   alignItems="center" item xs>
      <div
+	 
+	 key={"95"}
     style={{
       alignSelf:"center",
       display: 'flex',
@@ -463,10 +479,10 @@ const [pending,setPending]= React.useState<any>("")
     }}
   >
   <PlanCard
-  key={3}
+  key={"3"}
       backgroundColor="#F0F8FF"
-      ctaButton={<div><Button key={91}  onClick={()=>claimRewardsV2()} isFullWidth text="CLAIM" theme="primary"/><Button  key={92} style={{ marginTop: 4 }} onClick={() => claimRewardsV1()} isFullWidth text="Withdraw old" theme="outline" /></div>}
-      description={<Typography color="#5B8DB9" variant="caption14" weight="550">Your Info</Typography>}
+      ctaButton={<div><Button key={"91231"}  onClick={()=>claimRewardsV2()} isFullWidth text="CLAIM" theme="primary"/><Button  key={"92"} style={{ marginTop: 4 }} onClick={() => claimRewardsV1()} isFullWidth text="Withdraw old" theme="outline" /></div>}
+      description={<Typography key={"9167"} color="#5B8DB9" variant="caption14" weight="550">Your Info</Typography>}
       features={[
         nftCount+" Cooties",        
         myTier+" Tier",
@@ -476,7 +492,7 @@ const [pending,setPending]= React.useState<any>("")
       horizontalLine
       isCurrentBillingPeriod
       isCurrentPlan
-      price={<Typography color="#041836" variant="h1" weight="700">{rewardsv2+ " COOT"}</Typography>}
+      price={<Typography key={"989781"} color="#041836" variant="h1" weight="700">{rewardsv2+ " COOT"}</Typography>}
       themeColor="#00D1AE"
       title="Staking Cooties V2"
       width="285px"

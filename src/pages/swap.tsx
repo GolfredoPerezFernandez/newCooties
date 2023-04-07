@@ -1,4 +1,23 @@
+/* eslint @typescript-eslint/no-var-requires: "off" */
+/* eslint-disable complexity */
+/* eslint @typescript-eslint/no-explicit-any: "off" */
+/* eslint-disable arrow-spacing */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable arrow-parens */
+/* eslint-disable arrow-spacing */
+/* eslint-disable prefer-const */
+/* eslint-disable no-undef */
+/* eslint-disable prefer-arrow-callback */
+/* eslint-disable array-callback-return */
 
+/* eslint @typescript-eslint/no-unused-vars: "off" */
+
+/* eslint-disable etc/no-commented-out-code */
+/* eslint-disable no-loop-func */
+/* eslint-disable no-inline-comments */
+/* eslint-disable no-inline-comments */
+/* eslint @typescript-eslint/no-shadow: "off" */
+/* eslint @typescript-eslint/no-empty-function: "off" */
 
 import type {
   SwapWidget as SwapWidgetType,
