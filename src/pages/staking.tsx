@@ -394,7 +394,7 @@ const [pending,setPending]= React.useState<any>([])
                   label="CootCoin"
                   placeholder="100"
                   />
-                  {parseInt((dataAllowance??"0").toString())>=parseInt(values.amount)? <Button disabled={!writeDeposit}  onClick={() => handleDeposit()} style={{ marginTop: 4 }} isFullWidth text="ADD FUNDS" theme="primary" />: <Button disabled={!handleApprove}  onClick={() => handleApprove()} style={{ marginTop: 4 }} isFullWidth text="APPROVE COOT" theme="primary" />}
+                  {dataAllowance&&parseInt((dataAllowance).toString())>=parseInt(values.amount)? <Button disabled={!writeDeposit}  onClick={() => handleDeposit()} style={{ marginTop: 4 }} isFullWidth text="ADD FUNDS" theme="primary" />: <Button disabled={!handleApprove}  onClick={() => handleApprove()} style={{ marginTop: 4 }} isFullWidth text="APPROVE COOT" theme="primary" />}
                   <Button key={931} disabled={!writeClaimRewards} onClick={() => claimRewardsCoot()} style={{ marginTop: 4 }} isFullWidth text="CLAIM" theme="primary" /><Button key={911} onClick={() => handleWithdraw()} style={{ marginTop: 4 }} isFullWidth text="Withdraw" theme="secondary" /></div>}
                 features={[
 					"Your Deposited:"+ethers.utils.formatEther(dataUserInfo[0]),
@@ -407,7 +407,7 @@ const [pending,setPending]= React.useState<any>([])
                 horizontalLine
                 isCurrentBillingPeriod
                 isCurrentPlan
-                price={<Typography color="#041836" variant="h1" weight="700">{(pending??"0").toString().substring(0,6) + " COOT"}</Typography>}
+                price={<Typography color="#041836" variant="h1" weight="700">{pending&&(pending??"0").toString().substring(0,6) + " COOT"}</Typography>}
                 themeColor="#00D1AE"
                 title="COOT Staking"
                 width="285px" description={<Typography color="#041836" variant="h1" weight="700">{""}</Typography>}    /></div>
