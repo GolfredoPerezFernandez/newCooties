@@ -111,7 +111,30 @@ const handleCloseNavMenu = () => {
               display: { xs: 'block', md: 'none' },
             }}
           >
-           
+           {pages.map((page,i) => (
+                <MenuItem key={i} onClick={handleCloseNavMenu}>
+                {page.text==="DOCS"? 
+                    <Link key={page.text} href={page.href}>
+                        <Typography key={page.text} color="black" textAlign="center">                 
+                    {page.text}
+                  </Typography>
+                </Link> 
+                : page.text==="SWAP"?
+                 <Link key={page.text} href={page.href}> 
+                 <a key={page.text}> <Typography key={page.text} color="black" textAlign="center">
+                 {page.text}
+                   </Typography></a>
+                  </Link>  :
+                 <Link key={page.text} href={page.href}> 
+                  <Typography key={page.text} color="black" textAlign="center">
+                  {page.text}
+                    </Typography>
+                   </Link> 
+                }
+                          
+
+                </MenuItem>
+              ))}
           </Menu>
         </Box>
   
