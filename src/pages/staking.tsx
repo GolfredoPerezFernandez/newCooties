@@ -258,11 +258,11 @@ const [pending,setPending]= React.useState<any>("0")
               setNFTCOUNT(data3v1)
 
               if(data2){ 
-                setRewardsV2(ethers.utils.formatEther((data2).toString()).substring(0,6))
+                setRewardsV2(ethers.utils.formatEther((data2).toString().substring(0,6)))
 
               }
               if(data2v1){          
-                     setRewardsV1(ethers.utils.formatEther((data2v1).toString()).substring(0,6))
+                     setRewardsV1(ethers.utils.formatEther((data2v1).toString().substring(0,6)))
 
 
               }
@@ -410,8 +410,8 @@ const [pending,setPending]= React.useState<any>("0")
                   {dataAllowance&&parseInt(dataAllowance)>=parseInt(values.amount)? <Button  key={"3371"} disabled={!writeDeposit}  onClick={() => handleDeposit()} style={{ marginTop: 4 }} isFullWidth text="ADD FUNDS" theme="primary" />: <Button  key={"31131"} disabled={!handleApprove}  onClick={() => handleApprove()} style={{ marginTop: 4 }} isFullWidth text="APPROVE COOT" theme="primary" />}
                   <Button key={"931"} disabled={!writeClaimRewards} onClick={() => claimRewardsCoot()} style={{ marginTop: 4 }} isFullWidth text="CLAIM" theme="primary" /><Button key={"2334"} onClick={() => handleWithdraw()} style={{ marginTop: 4 }} isFullWidth text="Withdraw" theme="secondary" /></div>}
                 features={[
-					"Your Deposited:"+ethers.utils.formatEther(dataUserInfo[0]),
-                  "TVL:"+balanceOf.substring(0,12),
+					"Your Deposited:"+ethers.utils.formatEther(dataUserInfo[0].toString()),
+                  "TVL:"+balanceOf.toString().substring(0,12),
                   "ROI 90%",
 
                 ]}
@@ -420,7 +420,7 @@ const [pending,setPending]= React.useState<any>("0")
                 horizontalLine
                 isCurrentBillingPeriod
                 isCurrentPlan
-                price={<Typography key={"33321"} color="#041836" variant="h1" weight="700">{pending&&pending.substring(0,6) + " COOT"}</Typography>}
+                price={<Typography key={"33321"} color="#041836" variant="h1" weight="700">{pending&&pending.toString().substring(0,6) + " COOT"}</Typography>}
                 themeColor="#00D1AE"
                 title="COOT Staking"
                 width="285px" description={<Typography key={"3331"} color="#041836" variant="h1" weight="700">{""}</Typography>}    /></div>
