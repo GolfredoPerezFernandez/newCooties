@@ -290,7 +290,7 @@ const [pending,setPending]= React.useState<any>([])
       
       }
     const handleDeposit =async () => { 
-       if(ethAddress){
+       if(ethAddress&&dataAllowance){
        if(parseInt((dataAllowance??"").toString())>=parseInt(values.amount)){
    
        await  writeDeposit?.()
