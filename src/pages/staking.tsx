@@ -107,7 +107,7 @@ const [rewardsv2,setRewardsV2]= React.useState<any>("0")
 const [rewardsv1,setRewardsV1]= React.useState<any>("0")
 const [balanceOf,setBalance]= React.useState<any>("0")
 
-const [pending,setPending]= React.useState<any>([])
+const [pending,setPending]= React.useState<any>("")
 
     const { data:data2 } = useContractRead({
       address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
