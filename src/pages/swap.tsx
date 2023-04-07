@@ -19,9 +19,9 @@
 /* eslint @typescript-eslint/no-shadow: "off" */
 /* eslint @typescript-eslint/no-empty-function: "off" */
 
-import type {
-  SwapWidget as SwapWidgetType,
-  PangolinProvider as PangolinProviderType,
+import {
+  SwapWidget,
+  PangolinProvider ,
 } from '@pangolindex/components';
 
 import dynamic from 'next/dynamic';
@@ -32,13 +32,6 @@ import {  Typography } from '@web3uikit/core';
 import { useEffect } from 'react';
 import React from 'react';
 
-const PangolinProvider = dynamic(
-  () => import('@pangolindex/components').then((module) => module.PangolinProvider) as any,
-  { ssr: false },
-) as typeof PangolinProviderType;
-const SwapWidget = dynamic(() => import('@pangolindex/components').then((module) => module.SwapWidget) as any, {
-  ssr: false,
-}) as typeof SwapWidgetType;
 
 export default function Swap() { 
   const [ethAddress,setEthAddress]= React.useState<any>("")
@@ -113,6 +106,10 @@ if(address){
       alignItems:"center",
     }}
   >
+    {ethAddress!==""?
+    <PangolinProvider account={ethAddress} chainId={19} library={""}>
+	  <SwapWidget isLimitOrderVisible={false} />
+    </PangolinProvider> :null}
 
   </div>
 </div>
