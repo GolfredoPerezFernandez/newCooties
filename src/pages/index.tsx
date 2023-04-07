@@ -237,8 +237,7 @@ export default function Page() {
           image={e.img}
           alt="Paella dish"
         />
-        <CardContent         style={{backgroundColor:'#161A42'}}
-    >
+        <CardContent style={{backgroundColor:'#161A42'}}>
           <Typography variant="body2" color="white">
           {e.title}
           </Typography>
