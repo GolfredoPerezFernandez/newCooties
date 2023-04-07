@@ -27,14 +27,15 @@ import {  Typography } from '@web3uikit/core';
 import { useEffect } from 'react';
 import React from 'react';
 
+export default function Swap() { 
+  
 
 const SwapWidget = dynamic(() =>
-  import('@pangolindex/components').then((mod) => mod.SwapWidget)
+import('@pangolindex/components').then((mod) => mod.SwapWidget)
 )
 const PangolinProvider = dynamic(() =>
-  import('@pangolindex/components').then((mod) => mod.PangolinProvider)
+import('@pangolindex/components').then((mod) => mod.PangolinProvider)
 )
-export default function Swap() { 
   const [ethAddress,setEthAddress]= React.useState<any>("")
 
   const useStyles = makeStyles((theme :any)=> ({
