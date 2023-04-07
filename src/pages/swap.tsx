@@ -12,16 +12,17 @@ import { makeStyles } from '@material-ui/core/styles';
   import { useAccount } from 'wagmi'
 import { Hero, Typography } from '@web3uikit/core';
 
-const PangolinProvider = dynamic(
-  () => import('@pangolindex/components').then((module) => module.PangolinProvider) as any,
-  { ssr: false },
-) as typeof PangolinProviderType;
-const SwapWidget = dynamic(() => import('@pangolindex/components').then((module) => module.SwapWidget) as any, {
-  ssr: false,
-}) as typeof SwapWidgetType;
 
 export default function Swap() { 
 
+  const PangolinProvider = dynamic(
+    () => import('@pangolindex/components').then((module) => module.PangolinProvider) as any,
+    { ssr: false },
+  ) as typeof PangolinProviderType;
+  const SwapWidget = dynamic(() => import('@pangolindex/components').then((module) => module.SwapWidget) as any, {
+    ssr: false,
+  }) as typeof SwapWidgetType;
+  
   const useStyles = makeStyles((theme :any)=> ({
     root: {
       width: '100%',
