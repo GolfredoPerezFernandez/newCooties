@@ -416,7 +416,7 @@ return
                   {dataAllowance&&parseInt(dataAllowance)>=parseInt(values.amount)? <Button  key={"3371"} disabled={!writeDeposit}  onClick={() => handleDeposit()} style={{ marginTop: 4 }} isFullWidth text="ADD FUNDS" theme="primary" />: <Button  key={"31131"} disabled={!handleApprove}  onClick={() => handleApprove()} style={{ marginTop: 4 }} isFullWidth text="APPROVE COOT" theme="primary" />}
                   <Button key={"931"} disabled={!writeClaimRewards} onClick={() => claimRewardsCoot()} style={{ marginTop: 4 }} isFullWidth text="CLAIM" theme="primary" /><Button key={"2334"} onClick={() => handleWithdraw()} style={{ marginTop: 4 }} isFullWidth text="Withdraw" theme="secondary" /></div>}
                 features={[
-					"Your Deposited:"+ethers.utils.formatEther(userInfo[0].toString()),
+					"Your Deposit:"+ethers.utils.formatEther(userInfo[0].toString()),
                   "TVL:"+balanceOf.toString().substring(0,12),
                   "ROI 90%",
 
