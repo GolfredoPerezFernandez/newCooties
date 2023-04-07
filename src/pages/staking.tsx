@@ -111,11 +111,11 @@ const [rewardsv1,setRewardsV1]= React.useState<any>("0")
               setNFTCOUNT(data3v1)
 
               if(data2){ 
-                setRewardsV2(ethers.utils.formatEther(parseFloat(data2.toString())).substring(0,6))
+                setRewardsV2(ethers.utils.formatEther(data2.toString()).substring(0,6))
 
               }
               if(data2v1){          
-                     setRewardsV1(ethers.utils.formatEther(parseFloat(data2v1.toString())).substring(0,6))
+                     setRewardsV1(ethers.utils.formatEther(data2v1.toString()).substring(0,6))
 
 
               }
