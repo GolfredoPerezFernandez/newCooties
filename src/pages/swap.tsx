@@ -44,11 +44,11 @@ export default function Swap() {
   }));
   
   
-  const classes = useStyles();
   
 
   const { address } = useAccount()
 
+  const classes = useStyles();
   return (
     <div
       style={{
