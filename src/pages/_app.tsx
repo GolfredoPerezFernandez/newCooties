@@ -124,12 +124,17 @@ const handleCloseNavMenu = () => {
                     {page.text}
                   </Typography>
                 </Link> 
-                : <li key={page.text}>
+                : page.text==="SWAP"?
+                <a > <Link key={page.text} href={page.href}> 
+                 <Typography key={page.text} color="white" textAlign="center">
+                 {page.text}
+                   </Typography>
+                  </Link> </a> :
                  <Link key={page.text} href={page.href}> 
                   <Typography key={page.text} color="white" textAlign="center">
                   {page.text}
                     </Typography>
-                   </Link>  </li>
+                   </Link> 
                 }
                           
 
