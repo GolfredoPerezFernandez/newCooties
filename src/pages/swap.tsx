@@ -12,40 +12,39 @@ import { makeStyles } from '@material-ui/core/styles';
   import { useAccount } from 'wagmi'
 import { Hero, Typography } from '@web3uikit/core';
 
-const useStyles = makeStyles((theme :any)=> ({
-  root: {
-    width: '100%',
-    height: '100%',
-    position: 'relative',
-    '& video': {
-      objectFit: 'cover',
-    },
-  },
-  overlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  title: {
-    paddingBottom: theme.spacing(4),
-  },
-}));
+const PangolinProvider = dynamic(
+  () => import('@pangolindex/components').then((module) => module.PangolinProvider) as any,
+  { ssr: false },
+) as typeof PangolinProviderType;
+const SwapWidget = dynamic(() => import('@pangolindex/components').then((module) => module.SwapWidget) as any, {
+  ssr: false,
+}) as typeof SwapWidgetType;
+
 export default function Swap() { 
 
-  const Button = dynamic(() => import('@pangolindex/components').then((module) => module.Button) as any, {
-    ssr: false,
-  }) as typeof ButtonType;
+  const useStyles = makeStyles((theme :any)=> ({
+    root: {
+      width: '100%',
+      height: '100%',
+      position: 'relative',
+      '& video': {
+        objectFit: 'cover',
+      },
+    },
+    overlay: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    title: {
+      paddingBottom: theme.spacing(4),
+    },
+  }));
   
-  const PangolinProvider = dynamic(
-    () => import('@pangolindex/components').then((module) => module.PangolinProvider) as any,
-    { ssr: false },
-  ) as typeof PangolinProviderType;
-  const SwapWidget = dynamic(() => import('@pangolindex/components').then((module) => module.SwapWidget) as any, {
-    ssr: false,
-  }) as typeof SwapWidgetType;
+  
   
 
   const { address } = useAccount()
@@ -61,7 +60,6 @@ export default function Swap() {
         width: '100vw',
         minHeight: '100vh',
         margin:-8,
-        justifyContent:'center',
         alignItems:"center"
 
       }}
@@ -70,13 +68,12 @@ export default function Swap() {
       paddingTop:100,
       display: 'flex',
       flexDirection: 'column',
-      justifyContent:"center",
       alignItems:"center",
       width:"100%",
     }}
   >
 
-<Typography fontFamily={"poppins"} color="white"   variant="h1"  component="h1" textAlign={"center"} justifyContent={"center"} className={classes.title}>
+<Typography fontFamily={"poppins"} color="white"   variant="h1"  component="h1"  className={classes.title}>
             Token Swap
             </Typography>
       <div
