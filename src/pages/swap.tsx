@@ -19,6 +19,11 @@
 /* eslint @typescript-eslint/no-shadow: "off" */
 /* eslint @typescript-eslint/no-empty-function: "off" */
 
+import type {
+  SwapWidget as SwapWidgetType,
+  PangolinProvider as PangolinProviderType,
+} from '@pangolindex/components';
+
 import dynamic from 'next/dynamic';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -27,16 +32,16 @@ import {  Typography } from '@web3uikit/core';
 import { useEffect } from 'react';
 import React from 'react';
 
-const SwapWidget = dynamic(() =>
-import('@pangolindex/components').then((mod) => mod.SwapWidget)
-)
-const PangolinProvider = dynamic(() =>
-import('@pangolindex/components').then((mod) => mod.PangolinProvider)
-)
-export default function Swap() { 
-  
+const PangolinProvider = dynamic(
+  () => import('@pangolindex/components').then((module) => module.PangolinProvider) as any,
+  { ssr: false },
+) as typeof PangolinProviderType;
+const SwapWidget = dynamic(() => import('@pangolindex/components').then((module) => module.SwapWidget) as any, {
+  ssr: false,
+}) as typeof SwapWidgetType;
 
-  const [ethAddress,setEthAddress]= React.useState<any>("")
+export default function Swap() { 
+  const [ethAddress,setEthAddress]= React.useState<any>("0")
 
   const useStyles = makeStyles((theme :any)=> ({
     root: {
@@ -109,7 +114,7 @@ if(address){
     }}
   >
     {ethAddress!==""?
-    <PangolinProvider account={ethAddress} chainId={19} library={""}>
+    <PangolinProvider account={address} chainId={19} library={""}>
 	  <SwapWidget isLimitOrderVisible={false} />
     </PangolinProvider> :null}
 
