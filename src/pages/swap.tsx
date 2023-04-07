@@ -19,11 +19,6 @@
 /* eslint @typescript-eslint/no-shadow: "off" */
 /* eslint @typescript-eslint/no-empty-function: "off" */
 
-import {
-  SwapWidget,
-  PangolinProvider ,
-} from '@pangolindex/components';
-
 import dynamic from 'next/dynamic';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -33,6 +28,12 @@ import { useEffect } from 'react';
 import React from 'react';
 
 
+const SwapWidget = dynamic(() =>
+  import('@pangolindex/components').then((mod) => mod.SwapWidget)
+)
+const PangolinProvider = dynamic(() =>
+  import('@pangolindex/components').then((mod) => mod.PangolinProvider)
+)
 export default function Swap() { 
   const [ethAddress,setEthAddress]= React.useState<any>("")
 
