@@ -118,6 +118,8 @@ export default function Staking() {
 const [rewardsv2,setRewardsV2]= React.useState<any>("0")
 const [rewardsv1,setRewardsV1]= React.useState<any>("0")
 const [balanceOf,setBalance]= React.useState<any>("0")
+const [userInfo,setUserInfo]= React.useState<any>("0")
+
 
 const [pending,setPending]= React.useState<any>("0")
 
@@ -212,7 +214,7 @@ const [pending,setPending]= React.useState<any>("0")
         
        }})
 
-	   const { data:dataPending } = useContractRead<any,any,any>({
+	   const { data:dataPending } = useContractRead({
 		address: '0x008798daAF682d9716Ba9B47dCfD90a503bd9b66',
 		abi: masterDark,
 		args:[0,ethAddress],   
@@ -220,7 +222,7 @@ const [pending,setPending]= React.useState<any>("0")
 
 		functionName: 'pendingReward',
 		})
-	   const { data:dataUserInfo } = useContractRead<any,any,any>({
+	   const { data:dataUserInfo } = useContractRead({
 		address: '0x008798daAF682d9716Ba9B47dCfD90a503bd9b66',
 		abi: masterDark,  
 		  watch: true,
@@ -254,6 +256,10 @@ const [pending,setPending]= React.useState<any>("0")
     React.useEffect(()=>{ 
     async  function init(){
 
+		if(dataUserInfo){ 
+			setUserInfo(dataUserInfo)  
+
+		  }
         setNFTCOUNT(data3)  
               setNFTCOUNT(data3v1)
 
@@ -280,7 +286,7 @@ const [pending,setPending]= React.useState<any>("0")
     React.useEffect(()=>{		
 
 		if(dataPending){
-			setPending(ethers.utils.formatEther(dataPending))
+			setPending(ethers.utils.formatEther(parseFloat(dataPending.toString())))
 		}
 		
 		if(dataBalance){
@@ -410,7 +416,7 @@ const [pending,setPending]= React.useState<any>("0")
                   {dataAllowance&&parseInt(dataAllowance)>=parseInt(values.amount)? <Button  key={"3371"} disabled={!writeDeposit}  onClick={() => handleDeposit()} style={{ marginTop: 4 }} isFullWidth text="ADD FUNDS" theme="primary" />: <Button  key={"31131"} disabled={!handleApprove}  onClick={() => handleApprove()} style={{ marginTop: 4 }} isFullWidth text="APPROVE COOT" theme="primary" />}
                   <Button key={"931"} disabled={!writeClaimRewards} onClick={() => claimRewardsCoot()} style={{ marginTop: 4 }} isFullWidth text="CLAIM" theme="primary" /><Button key={"2334"} onClick={() => handleWithdraw()} style={{ marginTop: 4 }} isFullWidth text="Withdraw" theme="secondary" /></div>}
                 features={[
-					"Your Deposited:"+ethers.utils.formatEther(dataUserInfo[0].toString()),
+					"Your Deposited:"+ethers.utils.formatEther(userInfo[0].toString()),
                   "TVL:"+balanceOf.toString().substring(0,12),
                   "ROI 90%",
 
