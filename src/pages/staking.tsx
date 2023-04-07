@@ -246,11 +246,11 @@ const [pending,setPending]= React.useState<any>([])
               setNFTCOUNT(data3v1)
 
               if(data2){ 
-                setRewardsV2(ethers.utils.formatEther(data2.toString()).substring(0,6))
+                setRewardsV2(ethers.utils.formatEther((data2??"0").toString()).substring(0,6))
 
               }
               if(data2v1){          
-                     setRewardsV1(ethers.utils.formatEther(data2v1.toString()).substring(0,6))
+                     setRewardsV1(ethers.utils.formatEther((data2v1??"0").toString()).substring(0,6))
 
 
               }
@@ -394,8 +394,8 @@ const [pending,setPending]= React.useState<any>([])
                   label="CootCoin"
                   placeholder="100"
                   />
-                  {parseInt((dataAllowance).toString())>=parseInt(values.amount)? <Button disabled={!writeDeposit}  onClick={() => handleDeposit()} style={{ marginTop: 4 }} isFullWidth text="ADD FUNDS" theme="primary" />: <Button disabled={!handleApprove}  onClick={() => handleApprove()} style={{ marginTop: 4 }} isFullWidth text="APPROVE COOT" theme="primary" />}
-                  <Button disabled={!writeClaimRewards} onClick={() => claimRewardsCoot()} style={{ marginTop: 4 }} isFullWidth text="CLAIM" theme="primary" /><Button onClick={() => handleWithdraw()} style={{ marginTop: 4 }} isFullWidth text="Withdraw" theme="secondary" /></div>}
+                  {parseInt((dataAllowance??"0").toString())>=parseInt(values.amount)? <Button disabled={!writeDeposit}  onClick={() => handleDeposit()} style={{ marginTop: 4 }} isFullWidth text="ADD FUNDS" theme="primary" />: <Button disabled={!handleApprove}  onClick={() => handleApprove()} style={{ marginTop: 4 }} isFullWidth text="APPROVE COOT" theme="primary" />}
+                  <Button key={931} disabled={!writeClaimRewards} onClick={() => claimRewardsCoot()} style={{ marginTop: 4 }} isFullWidth text="CLAIM" theme="primary" /><Button key={911} onClick={() => handleWithdraw()} style={{ marginTop: 4 }} isFullWidth text="Withdraw" theme="secondary" /></div>}
                 features={[
 					"Your Deposited:"+ethers.utils.formatEther(dataUserInfo[0]),
                   "TVL:"+balanceOf.substring(0,12),
@@ -407,7 +407,7 @@ const [pending,setPending]= React.useState<any>([])
                 horizontalLine
                 isCurrentBillingPeriod
                 isCurrentPlan
-                price={<Typography color="#041836" variant="h1" weight="700">{(pending).toString().substring(0,6) + " COOT"}</Typography>}
+                price={<Typography color="#041836" variant="h1" weight="700">{(pending??"0").toString().substring(0,6) + " COOT"}</Typography>}
                 themeColor="#00D1AE"
                 title="COOT Staking"
                 width="285px" description={<Typography color="#041836" variant="h1" weight="700">{""}</Typography>}    /></div>
@@ -430,7 +430,7 @@ const [pending,setPending]= React.useState<any>([])
   <PlanCard
   key={2}
       backgroundColor="#F0F8FF"
-      ctaButton={<div><Button onClick={()=>claimRewardsV1()} isFullWidth text="CLAIM" theme="primary"/> <Button style={{ marginTop: 4 }} onClick={() => claimRewardsV1()} isFullWidth text="Withdraw old" theme="outline" /></div>}
+      ctaButton={<div><Button key={31} onClick={()=>claimRewardsV1()} isFullWidth text="CLAIM" theme="primary"/> <Button key={32} style={{ marginTop: 4 }} onClick={() => claimRewardsV1()} isFullWidth text="Withdraw old" theme="outline" /></div>}
       description={<Typography color="#5B8DB9" variant="caption14" weight="550">Your Info</Typography>}
       features={[
         nftCount2+" Cooties",
@@ -465,7 +465,7 @@ const [pending,setPending]= React.useState<any>([])
   <PlanCard
   key={3}
       backgroundColor="#F0F8FF"
-      ctaButton={<div><Button  onClick={()=>claimRewardsV2()} isFullWidth text="CLAIM" theme="primary"/><Button style={{ marginTop: 4 }} onClick={() => claimRewardsV1()} isFullWidth text="Withdraw old" theme="outline" /></div>}
+      ctaButton={<div><Button key={91}  onClick={()=>claimRewardsV2()} isFullWidth text="CLAIM" theme="primary"/><Button  key={92} style={{ marginTop: 4 }} onClick={() => claimRewardsV1()} isFullWidth text="Withdraw old" theme="outline" /></div>}
       description={<Typography color="#5B8DB9" variant="caption14" weight="550">Your Info</Typography>}
       features={[
         nftCount+" Cooties",        
