@@ -125,7 +125,7 @@ const handleCloseNavMenu = () => {
                   </Typography>
                 </Link> 
                 : page.text==="SWAP"?
-                <a > <Link key={page.text} href={page.href}> 
+                <a key={page.text} > <Link key={page.text} href={page.href}> 
                  <Typography key={page.text} color="white" textAlign="center">
                  {page.text}
                    </Typography>
