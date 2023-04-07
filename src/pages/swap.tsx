@@ -14,10 +14,10 @@ import { Hero, Typography } from '@web3uikit/core';
 
 const PangolinProvider = dynamic(
   () => import('@pangolindex/components').then((module) => module.PangolinProvider) as any,
-  { ssr: false },
+  { ssr: true },
 ) as typeof PangolinProviderType;
 const SwapWidget = dynamic(() => import('@pangolindex/components').then((module) => module.SwapWidget) as any, {
-  ssr: false,
+  ssr: true,
 }) as typeof SwapWidgetType;
 
 export default function Swap() { 
