@@ -9,18 +9,6 @@ import type {
 import dynamic from 'next/dynamic';
 import { makeStyles } from '@material-ui/core/styles';
 
-const Button = dynamic(() => import('@pangolindex/components').then((module) => module.Button) as any, {
-  ssr: false,
-}) as typeof ButtonType;
-
-const PangolinProvider = dynamic(
-  () => import('@pangolindex/components').then((module) => module.PangolinProvider) as any,
-  { ssr: false },
-) as typeof PangolinProviderType;
-const SwapWidget = dynamic(() => import('@pangolindex/components').then((module) => module.SwapWidget) as any, {
-  ssr: false,
-}) as typeof SwapWidgetType;
-
   import { useAccount } from 'wagmi'
 import { Hero, Typography } from '@web3uikit/core';
 
@@ -46,6 +34,20 @@ const useStyles = makeStyles((theme :any)=> ({
   },
 }));
 export default function Swap() { 
+
+  const Button = dynamic(() => import('@pangolindex/components').then((module) => module.Button) as any, {
+    ssr: false,
+  }) as typeof ButtonType;
+  
+  const PangolinProvider = dynamic(
+    () => import('@pangolindex/components').then((module) => module.PangolinProvider) as any,
+    { ssr: false },
+  ) as typeof PangolinProviderType;
+  const SwapWidget = dynamic(() => import('@pangolindex/components').then((module) => module.SwapWidget) as any, {
+    ssr: false,
+  }) as typeof SwapWidgetType;
+  
+
   const { address } = useAccount()
 
   const classes = useStyles();

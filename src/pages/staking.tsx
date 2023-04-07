@@ -8,7 +8,7 @@ import { useContractWrite, useAccount,usePrepareContractWrite, useContractRead }
 export default function Staking() {  
   
   const { config:configv1 } = usePrepareContractWrite({
-    address: '0xA01F32704D4cF52C60d852332aD0D7222175F59a',
+    address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
     abi: stakingABI,
     functionName: 'claimRewards',
       onSuccess(data) {	
@@ -22,7 +22,7 @@ export default function Staking() {
   
     })  
   const { config, error } = usePrepareContractWrite({
-  address: '0xA01F32704D4cF52C60d852332aD0D7222175F59a',
+  address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
   abi: stakingABI,
   functionName: 'claimRewards',
     onSuccess(data) {	
@@ -49,20 +49,20 @@ const [rewardsv2,setRewardsV2]= React.useState<any>("0")
 const [rewardsv1,setRewardsV1]= React.useState<any>("0")
 
     const { data:data2 } = useContractRead({
-      address: '0xA01F32704D4cF52C60d852332aD0D7222175F59a',
+      address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
       abi: stakingABI,
       args:[ethAddress],
       functionName: 'calculateRewards',
       })
    
     const { data:data3 } = useContractRead({
-      address: '0xA01F32704D4cF52C60d852332aD0D7222175F59a',
+      address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
       abi: stakingABI,
       args:[ethAddress],
       functionName: 'getNftCount',
       })
       const { data:data4 } = useContractRead({
-        address: '0xA01F32704D4cF52C60d852332aD0D7222175F59a',
+        address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
         abi: stakingABI,
         args:[ethAddress],
         functionName: 'getNftTier',
@@ -86,20 +86,20 @@ const [rewardsv1,setRewardsV1]= React.useState<any>("0")
 
     };
     const { data:data2v1 } = useContractRead({
-      address: '0xA01F32704D4cF52C60d852332aD0D7222175F59a',
+      address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
       abi: stakingABI,
       args:[ethAddress],
       functionName: 'calculateRewards',
       })
    
     const { data:data3v1 } = useContractRead({
-      address: '0xA01F32704D4cF52C60d852332aD0D7222175F59a',
+      address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
       abi: stakingABI,
       args:[ethAddress],
       functionName: 'getNftCount',
       })
       const { data:data4v1 } = useContractRead({
-        address: '0xA01F32704D4cF52C60d852332aD0D7222175F59a',
+        address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
         abi: stakingABI,
         args:[ethAddress],
         functionName: 'getNftTier',
