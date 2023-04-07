@@ -36,6 +36,7 @@ const PangolinProvider = dynamic(
   () => import('@pangolindex/components').then((module) => module.PangolinProvider) as any,
   { ssr: false },
 ) as typeof PangolinProviderType;
+
 const SwapWidget = dynamic(() => import('@pangolindex/components').then((module) => module.SwapWidget) as any, {
   ssr: false,
 }) as typeof SwapWidgetType;
