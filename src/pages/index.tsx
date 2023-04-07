@@ -155,7 +155,7 @@ export default function Page() {
     <section    className={classes.root}>
       
       <ReactPlayer
-        url={"https://bafybeih6y3adbcxtmdnhxdvckmx3cfvefdwuwsz2drluwdbc6koywnfhg4.ipfs.nftstorage.link/"}
+        url={"https://bafybeigbwesuvzhw4zlnw4vui67vu4w65vtq44dicfisgaryjweqabymky.ipfs.nftstorage.link/"}
         playing
         loop
         muted
