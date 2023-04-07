@@ -217,7 +217,7 @@ console.log("entro")
                 price={<Typography color="#041836" variant="h1" weight="700">{rewardsv1 + " COOT"}</Typography>}
                 themeColor="#00D1AE"
                 title="COOT Staking"
-                width="285px" description={undefined}    /></div>
+                width="285px" description={<Typography color="#041836" variant="h1" weight="700">{""}</Typography>}    /></div>
   </Grid>
   <Grid 
   justifyContent="center"
