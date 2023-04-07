@@ -201,10 +201,7 @@ console.log("entro")
 
                   label="CootCoin"
                   placeholder="100"
-                  slots={{
-                    slotBefore: [MonetizationOnIcon
-                    ]
-                  }} />
+                  />
                   <Button onClick={() => claimRewardsV1()} style={{ marginTop: 4 }} isFullWidth text="CLAIM" theme="primary" /><Button onClick={() => claimRewardsV1()} style={{ marginTop: 4 }} isFullWidth text="Withdraw" theme="secondary" /><Button style={{ marginTop: 4 }} onClick={() => claimRewardsV1()} isFullWidth text="Withdraw old" theme="outline" /></div>}
                 features={[
                   "TVL:",
