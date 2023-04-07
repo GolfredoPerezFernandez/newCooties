@@ -39,10 +39,6 @@ export default function Swap() {
     ssr: false,
   }) as typeof ButtonType;
   
-  const PangolinProvider = dynamic(
-    () => import('@pangolindex/components').then((module) => module.PangolinProvider) as any,
-    { ssr: false },
-  ) as typeof PangolinProviderType;
   const SwapWidget = dynamic(() => import('@pangolindex/components').then((module) => module.SwapWidget) as any, {
     ssr: false,
   }) as typeof SwapWidgetType;
@@ -93,9 +89,7 @@ export default function Swap() {
   >
     
 
-    <PangolinProvider account={address} chainId={19} library={""}>
 	  <SwapWidget isLimitOrderVisible={false} />
-    </PangolinProvider> 
   </div>
 </div>
  
