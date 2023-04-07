@@ -119,17 +119,17 @@ const handleCloseNavMenu = () => {
         {pages.map((page,i) => (
                 <MenuItem key={i} onClick={handleCloseNavMenu}>
                 {page.text==="DOCS"? 
-                           <Link href={page.href}>
+                           <Link key={page.text} href={page.href}>
                              
-                               <Typography color="white" textAlign="center">                 
+                               <Typography key={page.text} color="white" textAlign="center">                 
                         {page.text}
                         </Typography>
 
   </Link> 
                 : 
-                <Link href={page.href}> 
+                <Link key={page.text} href={page.href}> 
                 
-                <Typography color="white" textAlign="center">
+                <Typography key={page.text} color="white" textAlign="center">
               {page.text}
                 </Typography>
 </Link>  

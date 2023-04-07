@@ -309,6 +309,8 @@ const [pending,setPending]= React.useState<any>([])
   };
   return (
     <div
+	key={112}
+
       style={{
         backgroundImage: `url(${"https://cdn.discordapp.com/attachments/907590324627595284/1076218522100826182/blockchain_2.png"})`,
         backgroundSize: 'cover',
@@ -322,6 +324,8 @@ const [pending,setPending]= React.useState<any>([])
 
       }}
     > <div
+	key={99}
+
     style={{
       paddingTop:100,
       display: 'flex',
@@ -331,6 +335,8 @@ const [pending,setPending]= React.useState<any>([])
     }}
   >
 <Hero
+	key={125}
+
   align="center"
   backgroundURL="https://moralis.io/wp-content/uploads/2021/06/blue-blob-background-2.svg"
   height="176px"
@@ -345,6 +351,8 @@ const [pending,setPending]= React.useState<any>([])
 
 </div>
       <div
+	  	key={142}
+
     style={{
       paddingTop:100,
       paddingBottom:100,
@@ -354,16 +362,22 @@ const [pending,setPending]= React.useState<any>([])
       alignItems:"center",
     }}
   >
-    <Grid container 
+    <Grid container
+	
+	key={12}
   justifyContent="center"
   width={"100%"}
   alignItems="center" spacing={3}>
     
   <Grid 
+  
+  key={9}
   justifyContent="center"
   alignItems="center" item xs>
    
       <div
+	  	key={120}
+
     style={{
       alignSelf:"center",
       display: 'flex',
@@ -372,7 +386,8 @@ const [pending,setPending]= React.useState<any>([])
       alignItems:"center",
     }}
   >
-  <PlanCard
+  <PlanCard 
+  key={1}
                 backgroundColor="#F0F8FF"
                 ctaButton={<div><Input
                   onChange={handleChanges('amount')}
@@ -398,6 +413,8 @@ const [pending,setPending]= React.useState<any>([])
                 width="285px" description={<Typography color="#041836" variant="h1" weight="700">{""}</Typography>}    /></div>
   </Grid>
   <Grid 
+  
+  key={7}
   justifyContent="center"
   alignItems="center" item xs>
    
@@ -411,6 +428,7 @@ const [pending,setPending]= React.useState<any>([])
     }}
   >
   <PlanCard
+  key={2}
       backgroundColor="#F0F8FF"
       ctaButton={<div><Button onClick={()=>claimRewardsV1()} isFullWidth text="CLAIM" theme="primary"/> <Button style={{ marginTop: 4 }} onClick={() => claimRewardsV1()} isFullWidth text="Withdraw old" theme="outline" /></div>}
       description={<Typography color="#5B8DB9" variant="caption14" weight="550">Your Info</Typography>}
@@ -431,6 +449,8 @@ const [pending,setPending]= React.useState<any>([])
   </Grid>
 
   <Grid 
+  
+  key={5}
   justifyContent="center"
   alignItems="center" item xs>
      <div
@@ -443,6 +463,7 @@ const [pending,setPending]= React.useState<any>([])
     }}
   >
   <PlanCard
+  key={3}
       backgroundColor="#F0F8FF"
       ctaButton={<div><Button  onClick={()=>claimRewardsV2()} isFullWidth text="CLAIM" theme="primary"/><Button style={{ marginTop: 4 }} onClick={() => claimRewardsV1()} isFullWidth text="Withdraw old" theme="outline" /></div>}
       description={<Typography color="#5B8DB9" variant="caption14" weight="550">Your Info</Typography>}
