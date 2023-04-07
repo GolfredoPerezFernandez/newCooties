@@ -62,7 +62,7 @@ const handleCloseNavMenu = () => {
         margin:-8
       }}
     >   
-        <AppBar style={{backgroundColor:'#161A42',height:85}} position="static">
+        <AppBar style={paddingTop:10,backgroundColor:'#161A42',height:85}} position="static">
     <Container maxWidth="xl">
       <Toolbar disableGutters>
        
