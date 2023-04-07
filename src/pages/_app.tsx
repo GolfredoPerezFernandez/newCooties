@@ -4,11 +4,12 @@ import type { AppProps } from 'next/app'
 import NextHead from 'next/head'
 import * as React from 'react'
 import { WagmiConfig } from 'wagmi'
-import { AppBar, Box, Container, Grid, IconButton, Link, Menu, MenuItem, ThemeProvider,  Toolbar,  Typography,  createTheme, responsiveFontSizes } from '@mui/material'
+import { AppBar, Box, Container, Grid, IconButton,  Menu, MenuItem, ThemeProvider,  Toolbar,  Typography,  createTheme, responsiveFontSizes } from '@mui/material'
 
 import { chains, client } from '../wagmi'
 
 import MenuIcon from '@mui/icons-material/Menu';
+import Link from 'next/link'
 const theme = createTheme({
  
   typography: {
