@@ -29,6 +29,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
   import { useAccount } from 'wagmi'
 import {  Typography } from '@web3uikit/core';
+import { useEffect } from 'react';
+import React from 'react';
 
 const PangolinProvider = dynamic(
   () => import('@pangolindex/components').then((module) => module.PangolinProvider) as any,
@@ -39,6 +41,7 @@ const SwapWidget = dynamic(() => import('@pangolindex/components').then((module)
 }) as typeof SwapWidgetType;
 
 export default function Swap() { 
+  const [ethAddress,setEthAddress]= React.useState<any>("")
 
   const useStyles = makeStyles((theme :any)=> ({
     root: {
@@ -62,7 +65,11 @@ export default function Swap() {
     },
   }));
   
-  
+  useEffect(()=>{
+if(address){
+  setEthAddress(address)
+}
+  },[])
   
 
   const { address } = useAccount()
@@ -106,8 +113,8 @@ export default function Swap() {
       alignItems:"center",
     }}
   >
-    {address??''.toString().length>0?
-    <PangolinProvider account={address} chainId={19} library={""}>
+    {ethAddress!==""?
+    <PangolinProvider account={ethAddress} chainId={19} library={""}>
 	  <SwapWidget isLimitOrderVisible={false} />
     </PangolinProvider> :null}
 
