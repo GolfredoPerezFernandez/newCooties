@@ -14,10 +14,10 @@ import { Hero, Typography } from '@web3uikit/core';
 
 const PangolinProvider = dynamic(
   () => import('@pangolindex/components').then((module) => module.PangolinProvider) as any,
-  { ssr: true },
+  { ssr: false },
 ) as typeof PangolinProviderType;
 const SwapWidget = dynamic(() => import('@pangolindex/components').then((module) => module.SwapWidget) as any, {
-  ssr: true,
+  ssr: false,
 }) as typeof SwapWidgetType;
 
 export default function Swap() { 
@@ -88,11 +88,11 @@ export default function Swap() {
       alignItems:"center",
     }}
   >
-    
-
+    {address??''.toString().length>0?
     <PangolinProvider account={address} chainId={19} library={""}>
 	  <SwapWidget isLimitOrderVisible={false} />
-    </PangolinProvider> 
+    </PangolinProvider> :null}
+
   </div>
 </div>
  
