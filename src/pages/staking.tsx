@@ -12,7 +12,7 @@ export default function Staking() {
   const { address:ethAddress} = useAccount()
 
   const [values, setValues] = React.useState<any>({
-    amount: '0',
+    amount: '',
   });
   const { config:configv1 } = usePrepareContractWrite({
     address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
@@ -60,12 +60,12 @@ export default function Staking() {
   }
 
   })  
-    const [myTier2,setTier2]= React.useState<any>("0")
+    const [myTier2,setTier2]= React.useState<any>("")
 
-  const [myTier,setTier]= React.useState<any>("0")
-  const [nftCount2,setNFTCOUNT2]= React.useState<any>("0")
+  const [myTier,setTier]= React.useState<any>("")
+  const [nftCount2,setNFTCOUNT2]= React.useState<any>("")
 
-  const [nftCount,setNFTCOUNT]= React.useState<any>("0")
+  const [nftCount,setNFTCOUNT]= React.useState<any>("")
   const { data:dataWithdraw,write:writeWithdraw } = useContractWrite({
     mode: 'recklesslyUnprepared',
     address: '0x008798daAF682d9716Ba9B47dCfD90a503bd9b66',
