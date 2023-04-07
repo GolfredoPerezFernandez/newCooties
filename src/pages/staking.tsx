@@ -1,10 +1,10 @@
 
 import { Box, Grid } from '@mui/material'
-import { Button, Hero, PlanCard, Typography } from '@web3uikit/core'
+import { Button, Hero, Input, PlanCard, Typography } from '@web3uikit/core'
 import { ethers } from 'ethers';
 import * as React from 'react'
 import { useContractWrite, useAccount,usePrepareContractWrite, useContractRead } from 'wagmi';
-
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 export default function Staking() {  
   
   const { config:configv1 } = usePrepareContractWrite({
@@ -181,6 +181,47 @@ console.log("entro")
   justifyContent="center"
   width={"100%"}
   alignItems="center" spacing={3}>
+    
+  <Grid 
+  justifyContent="center"
+  alignItems="center" item xs>
+   
+      <div
+    style={{
+      alignSelf:"center",
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent:"center",
+      alignItems:"center",
+    }}
+  >
+  <PlanCard
+                backgroundColor="#F0F8FF"
+                ctaButton={<div><Input
+
+                  label="CootCoin"
+                  placeholder="100"
+                  slots={{
+                    slotBefore: [MonetizationOnIcon
+                    ]
+                  }} />
+                  <Button onClick={() => claimRewardsV1()} style={{ marginTop: 4 }} isFullWidth text="CLAIM" theme="primary" /><Button onClick={() => claimRewardsV1()} style={{ marginTop: 4 }} isFullWidth text="Withdraw" theme="secondary" /><Button style={{ marginTop: 4 }} onClick={() => claimRewardsV1()} isFullWidth text="Withdraw old" theme="outline" /></div>}
+                features={[
+                  "TVL:",
+                  "ROI",
+
+                  "Your Deposited:",
+                ]}
+                featuresIconColor="#A8AFB7"
+                height="606px"
+                horizontalLine
+                isCurrentBillingPeriod
+                isCurrentPlan
+                price={<Typography color="#041836" variant="h1" weight="700">{rewardsv1 + " COOT"}</Typography>}
+                themeColor="#00D1AE"
+                title="COOT Staking"
+                width="285px" description={undefined}    /></div>
+  </Grid>
   <Grid 
   justifyContent="center"
   alignItems="center" item xs>

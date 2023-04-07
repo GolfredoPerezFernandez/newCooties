@@ -8,6 +8,13 @@ import { AppBar, Box, Container, Grid, IconButton, Link, Menu, MenuItem, ThemePr
 
 import { chains, client } from '../wagmi'
 
+import dynamic from 'next/dynamic';
+import type {
+  SwapWidget as SwapWidgetType,
+  Button as ButtonType,
+  PangolinProvider as PangolinProviderType,
+} from '@pangolindex/components';
+import { useAccount } from 'wagmi'
 import MenuIcon from '@mui/icons-material/Menu';
 const theme = createTheme({
  
@@ -25,6 +32,7 @@ const theme = createTheme({
 const pages = [{text:'HOME',href:"/"},{text:'DOCS',href:"https://docs.cootiedocs.xyz/"}, {text:'STAKING',href:"/staking"}, {text:'SWAP',href:"/swap"}];
 
 function App({ Component, pageProps }: AppProps) {
+  
   const [mounted, setMounted] = React.useState(false)
   React.useEffect(() => setMounted(true), [])
   
@@ -38,9 +46,15 @@ const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
   setAnchorElUser(event.currentTarget);
 };
 
+const PangolinProvider = dynamic(
+  () => import('@pangolindex/components').then((module) => module.PangolinProvider) as any,
+  { ssr: false },
+) as typeof PangolinProviderType;
+
 const handleCloseNavMenu = () => {
   setAnchorElNav(null);
 };
+const { address } = useAccount()
   return (
     <WagmiConfig client={client}><ThemeProvider theme={responsiveFontSizes(theme)}>
 
@@ -142,7 +156,11 @@ const handleCloseNavMenu = () => {
       </Toolbar>
     </Container>
   </AppBar>
+  
+  <PangolinProvider account={address} chainId={19} library={""}>
         {mounted && <Component {...pageProps} />}
+        
+    </PangolinProvider> 
         <Box
       sx={{
         width: "100%",
