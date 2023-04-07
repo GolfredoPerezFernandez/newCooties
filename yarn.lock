@@ -11532,6 +11532,23 @@ mocha@^10.2.0:
     yargs-parser "20.2.4"
     yargs-unparser "2.0.0"
 
+moralis-v1@^1.12.0:
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/moralis-v1/-/moralis-v1-1.12.0.tgz#a27f3849146771f2e5de19ed0c2d23a1f117a0c0"
+  integrity sha512-TjJsYDm1lRX1/Trzj5TixreL55LBQYgIlzwDuCBdVpZ60saI6Bpv4x2qEldVRHRMedyJ2OpUnwDJtTgKKjJf/A==
+  dependencies:
+    "@babel/runtime" "7.16.7"
+    "@babel/runtime-corejs3" "7.16.8"
+    "@metamask/detect-provider" "^1.2.0"
+    axios "0.26.1"
+    ethers "5.6.0"
+    react-native-crypto-js "1.0.0"
+    uuid "^8.3.2"
+    ws "^8.3.0"
+    xmlhttprequest "1.8.0"
+  optionalDependencies:
+    crypto-js "4.1.1"
+
 moralis@^1.8.1:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/moralis/-/moralis-1.11.0.tgz#aa736cf5acbd3f65ac83d44f2e4e12e0e88566f8"
@@ -12875,7 +12892,7 @@ react-markdown@^8.0.0:
     unist-util-visit "^4.0.0"
     vfile "^5.0.0"
 
-react-moralis@^1.4.0:
+react-moralis@^1.4.0, react-moralis@^1.4.2:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/react-moralis/-/react-moralis-1.4.2.tgz#745cd5fba311071ecb23267966f35784862f585b"
   integrity sha512-M6R9+AO4r/ZmJEMbv2IySnp1+8fRvzu1osehAWYqQgN8cPsHWGuDpnmNSd8Q+DegZ/sjiBkfWjuEXFRwrHYorQ==
