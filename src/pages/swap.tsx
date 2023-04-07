@@ -113,10 +113,6 @@ if(address){
       alignItems:"center",
     }}
   >
-    {ethAddress!==""?
-    <PangolinProvider account={ethAddress} chainId={19} library={""}>
-	  <SwapWidget isLimitOrderVisible={false} />
-    </PangolinProvider> :null}
 
   </div>
 </div>
