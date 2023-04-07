@@ -1,5 +1,5 @@
 
-import { Box } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import { Button, Hero, PlanCard, Typography } from '@web3uikit/core'
 import { ethers } from 'ethers';
 import * as React from 'react'
@@ -7,6 +7,20 @@ import { useContractWrite, useAccount,usePrepareContractWrite, useContractRead }
 
 export default function Staking() {  
   
+  const { config:configv1 } = usePrepareContractWrite({
+    address: '0xA01F32704D4cF52C60d852332aD0D7222175F59a',
+    abi: stakingABI,
+    functionName: 'claimRewards',
+      onSuccess(data) {	
+  
+      console.log('Success approve', data)
+      },
+      onError(data){
+      
+        console.log('error', data)
+    }
+  
+    })  
   const { config, error } = usePrepareContractWrite({
   address: '0xA01F32704D4cF52C60d852332aD0D7222175F59a',
   abi: stakingABI,
@@ -20,12 +34,19 @@ export default function Staking() {
       console.log('error', data)
   }
 
-  })
-  const [nftCount,setNFTCOUNT]= React.useState<String>("0")
+  })  
+    const [myTier2,setTier2]= React.useState<any>("0")
+
+  const [myTier,setTier]= React.useState<any>("0")
+  const [nftCount2,setNFTCOUNT2]= React.useState<any>("0")
+
+  const [nftCount,setNFTCOUNT]= React.useState<any>("0")
 	const { address:ethAddress} = useAccount()
+  const { data:dataV1,write:writeV1 } = useContractWrite(configv1)
 
   const { data, isLoading, isSuccess, write } = useContractWrite(config)
-const [rewardsv2,setRewardsV2]= React.useState<String>("0")
+const [rewardsv2,setRewardsV2]= React.useState<any>("0")
+const [rewardsv1,setRewardsV1]= React.useState<any>("0")
 
     const { data:data2 } = useContractRead({
       address: '0xA01F32704D4cF52C60d852332aD0D7222175F59a',
@@ -40,6 +61,12 @@ const [rewardsv2,setRewardsV2]= React.useState<String>("0")
       args:[ethAddress],
       functionName: 'getNftCount',
       })
+      const { data:data4 } = useContractRead({
+        address: '0xA01F32704D4cF52C60d852332aD0D7222175F59a',
+        abi: stakingABI,
+        args:[ethAddress],
+        functionName: 'getNftTier',
+        })
 
   const claimRewardsV2 =async () => {
 
@@ -50,12 +77,44 @@ const [rewardsv2,setRewardsV2]= React.useState<String>("0")
 
     };
 
+    const claimRewardsV1 =async () => {
+
+		
+
+			await  writeV1?.()
+
+
+    };
+    const { data:data2v1 } = useContractRead({
+      address: '0xA01F32704D4cF52C60d852332aD0D7222175F59a',
+      abi: stakingABI,
+      args:[ethAddress],
+      functionName: 'calculateRewards',
+      })
+   
+    const { data:data3v1 } = useContractRead({
+      address: '0xA01F32704D4cF52C60d852332aD0D7222175F59a',
+      abi: stakingABI,
+      args:[ethAddress],
+      functionName: 'getNftCount',
+      })
+      const { data:data4v1 } = useContractRead({
+        address: '0xA01F32704D4cF52C60d852332aD0D7222175F59a',
+        abi: stakingABI,
+        args:[ethAddress],
+        functionName: 'getNftTier',
+        })
     React.useEffect(()=>{ 
     async  function init(){
 
-        console.log("data3 "+data3)
-        setNFTCOUNT(data3)
+        setNFTCOUNT(data3)  
+              setNFTCOUNT(data3v1)
+
         setRewardsV2(ethers.utils.formatEther(data2).substring(0,6))
+        setRewardsV1(ethers.utils.formatEther(data2v1).substring(0,6))
+        setTier(data4v1)
+
+        setTier(data4)
 
       }
       if(ethAddress){
@@ -111,35 +170,62 @@ console.log("entro")
       alignItems:"center",
     }}
   >
-    
-    <PlanCard
+    <Grid container 
+  justifyContent="center"
+  width={"100%"}
+  alignItems="center" spacing={3}>
+  <Grid 
+  justifyContent="center"
+  alignItems="center" item xs>
+   
+      <div
+    style={{
+      alignSelf:"center",
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent:"center",
+      alignItems:"center",
+    }}
+  >
+  <PlanCard
       backgroundColor="#F0F8FF"
-      ctaButton={<Button onClick={()=>claimRewardsV2()} isFullWidth text="CLAIM" theme="primary"/>}
+      ctaButton={<Button onClick={()=>claimRewardsV1()} isFullWidth text="CLAIM" theme="primary"/>}
       description={<Typography color="#5B8DB9" variant="caption14" weight="550">Your Info</Typography>}
       features={[
-        nftCount+" Cooties",
+        nftCount2+" Cooties",
+        myTier2+" Tier",
       ]}
       featuresIconColor="#A8AFB7"
       height="606px"
       horizontalLine
       isCurrentBillingPeriod
       isCurrentPlan
-      price={<Typography color="#041836" variant="h1" weight="700">{rewardsv2+" COOT"}</Typography>}
+      price={<Typography color="#041836" variant="h1" weight="700">{rewardsv1+" COOT"}</Typography>}
       themeColor="#00D1AE"
       title="Staking Cooties V1"
       width="285px"
-    />
+    /></div>
+  </Grid>
+
+  <Grid 
+  justifyContent="center"
+  alignItems="center" item xs>
      <div
-      style={{
-        margin:20
-      }}
-    />
-     <PlanCard
+    style={{
+      alignSelf:"center",
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent:"center",
+      alignItems:"center",
+    }}
+  >
+  <PlanCard
       backgroundColor="#F0F8FF"
       ctaButton={<Button  onClick={()=>claimRewardsV2()} isFullWidth text="CLAIM" theme="primary"/>}
       description={<Typography color="#5B8DB9" variant="caption14" weight="550">Your Info</Typography>}
       features={[
-        nftCount+" Cooties",
+        nftCount+" Cooties",        
+        myTier+" Tier",
       ]}
       featuresIconColor="#A8AFB7"
       height="606px"
@@ -151,6 +237,10 @@ console.log("entro")
       title="Staking Cooties V2"
       width="285px"
     />
+    </div>
+  </Grid>
+</Grid>
+    
   </div>
  
    </div>
