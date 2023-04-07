@@ -66,7 +66,22 @@ export default function Staking() {
   const [nftCount2,setNFTCOUNT2]= React.useState<any>("0")
 
   const [nftCount,setNFTCOUNT]= React.useState<any>("0")
-
+  const { data:dataWithdraw,write:writeWithdraw } = useContractWrite({
+    mode: 'recklesslyUnprepared',
+    address: '0x008798daAF682d9716Ba9B47dCfD90a503bd9b66',
+    abi: masterDark,
+    functionName: 'withdraw',
+    args:[0,values.amount,ethAddress],
+      async onSuccess(data) {	
+  
+      console.log('Success deposit', data)
+      },
+      onError(data){
+      
+        console.log('error', data)
+    }
+  
+    })
   const { data:dataDeposit,write:writeDeposit } = useContractWrite({
     mode: 'recklesslyUnprepared',
     address: '0x008798daAF682d9716Ba9B47dCfD90a503bd9b66',
@@ -90,33 +105,52 @@ export default function Staking() {
   const { data, isLoading, isSuccess, write } = useContractWrite(config)
 const [rewardsv2,setRewardsV2]= React.useState<any>("0")
 const [rewardsv1,setRewardsV1]= React.useState<any>("0")
+const [balanceOf,setBalance]= React.useState<any>("0")
+
+const [pending,setPending]= React.useState<any>([])
 
     const { data:data2 } = useContractRead({
       address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
       abi: stakingABI,
+	  watch: true,
+
       args:[ethAddress],
       functionName: 'calculateRewards',
       })
    
-      const { data:dataAllowance } = useContractRead({
+      const { data:dataAllowance } = useContractRead<any,any,any>({
         address: '0xe4671844Fcb3cA9A80A1224B6f9A0A6c2Ba2a7d5',
         abi: erc20ABI,
+		watch: true,
+
         args:[ethAddress,"0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd"],
         functionName: 'allowance',
         })
     const { data:data3 } = useContractRead({
       address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
-      abi: stakingABI,
+      abi: stakingABI,   
+	   watch: true,
+
       args:[ethAddress],
       functionName: 'getNftCount',
       })
       const { data:data4 } = useContractRead({
         address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
-        abi: stakingABI,
+        abi: stakingABI,    
+		watch: true,
+
         args:[ethAddress],
         functionName: 'getNftTier',
         })
 
+		const handleWithdraw =async () => {
+
+		
+
+			await  writeWithdraw?.()
+
+
+    };
   const claimRewardsV2 =async () => {
 
 		
@@ -140,10 +174,19 @@ const [rewardsv1,setRewardsV1]= React.useState<any>("0")
 
     };
     
+	const { data:dataBalance } = useContractRead<any,any,any>({
+		address: '0xe4671844Fcb3cA9A80A1224B6f9A0A6c2Ba2a7d5',
+		abi: erc20ABI,
+		args:["0x008798daAF682d9716Ba9B47dCfD90a503bd9b66"],   
+		 watch: true,
+
+		functionName: 'balanceOf',
+		})
   
     const { config:configApprove } = usePrepareContractWrite({
       address: '0xe4671844Fcb3cA9A80A1224B6f9A0A6c2Ba2a7d5',
       abi: erc20ABI,
+	  
       args:["0x008798daAF682d9716Ba9B47dCfD90a503bd9b66",values.amount],
       functionName: 'approve',
        async onSuccess(data) {	
@@ -157,23 +200,43 @@ const [rewardsv1,setRewardsV1]= React.useState<any>("0")
         
        }})
 
+	   const { data:dataPending } = useContractRead<any,any,any>({
+		address: '0x008798daAF682d9716Ba9B47dCfD90a503bd9b66',
+		abi: masterDark,
+		args:[0,ethAddress],   
+		 watch: true,
+
+		functionName: 'pendingReward',
+		})
+	   const { data:dataUserInfo } = useContractRead<any,any,any>({
+		address: '0x008798daAF682d9716Ba9B47dCfD90a503bd9b66',
+		abi: masterDark,  
+		  watch: true,
+
+		args:[0,ethAddress],
+		functionName: 'userInfo',
+		})
     const { data:data2v1 } = useContractRead({
       address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
       abi: stakingABI,
-      args:[ethAddress],
+      args:[ethAddress],    watch: true,
+
       functionName: 'calculateRewards',
       })
    
     const { data:data3v1 } = useContractRead({
       address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
       abi: stakingABI,
-      args:[ethAddress],
+      args:[ethAddress],    watch: true,
+
       functionName: 'getNftCount',
       })
       const { data:data4v1 } = useContractRead({
         address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
         abi: stakingABI,
         args:[ethAddress],
+		watch: true,
+
         functionName: 'getNftTier',
         })
     React.useEffect(()=>{ 
@@ -198,12 +261,20 @@ const [rewardsv1,setRewardsV1]= React.useState<any>("0")
       }
       if(ethAddress){
         init()
-console.log("entro")
       }
 
     },[ethAddress])
 
-    React.useEffect(()=>{
+    React.useEffect(()=>{		
+
+		if(dataPending){
+			setPending(ethers.utils.formatEther(dataPending))
+		}
+		
+		if(dataBalance){
+			setBalance(ethers.utils.formatEther(dataBalance))
+		}
+		
       async function init(){
 
         await  writeDeposit?.()
@@ -214,7 +285,6 @@ console.log("entro")
     }
     },[dataApprove])
     const handleApprove =async () => {
-console.log(parseInt((dataAllowance??"").toString()))
 
        await  writeApprove?.()
       
@@ -309,20 +379,20 @@ console.log(parseInt((dataAllowance??"").toString()))
                   label="CootCoin"
                   placeholder="100"
                   />
-                  {parseInt((dataAllowance??"").toString())>=parseInt(values.amount)? <Button disabled={!writeDeposit}  onClick={() => handleDeposit()} style={{ marginTop: 4 }} isFullWidth text="ADD FUNDS" theme="primary" />: <Button disabled={!handleApprove}  onClick={() => handleApprove()} style={{ marginTop: 4 }} isFullWidth text="APPROVE COOT" theme="primary" />}
-                  <Button disabled={!writeClaimRewards} onClick={() => claimRewardsCoot()} style={{ marginTop: 4 }} isFullWidth text="CLAIM" theme="primary" /><Button onClick={() => claimRewardsV1()} style={{ marginTop: 4 }} isFullWidth text="Withdraw" theme="secondary" /><Button style={{ marginTop: 4 }} onClick={() => claimRewardsV1()} isFullWidth text="Withdraw old" theme="outline" /></div>}
+                  {parseInt((dataAllowance).toString())>=parseInt(values.amount)? <Button disabled={!writeDeposit}  onClick={() => handleDeposit()} style={{ marginTop: 4 }} isFullWidth text="ADD FUNDS" theme="primary" />: <Button disabled={!handleApprove}  onClick={() => handleApprove()} style={{ marginTop: 4 }} isFullWidth text="APPROVE COOT" theme="primary" />}
+                  <Button disabled={!writeClaimRewards} onClick={() => claimRewardsCoot()} style={{ marginTop: 4 }} isFullWidth text="CLAIM" theme="primary" /><Button onClick={() => handleWithdraw()} style={{ marginTop: 4 }} isFullWidth text="Withdraw" theme="secondary" /></div>}
                 features={[
-                  "TVL:",
-                  "ROI",
+					"Your Deposited:"+ethers.utils.formatEther(dataUserInfo[0]),
+                  "TVL:"+balanceOf.substring(0,12),
+                  "ROI 90%",
 
-                  "Your Deposited:",
                 ]}
                 featuresIconColor="#A8AFB7"
                 height="606px"
                 horizontalLine
                 isCurrentBillingPeriod
                 isCurrentPlan
-                price={<Typography color="#041836" variant="h1" weight="700">{rewardsv1 + " COOT"}</Typography>}
+                price={<Typography color="#041836" variant="h1" weight="700">{(pending).toString().substring(0,6) + " COOT"}</Typography>}
                 themeColor="#00D1AE"
                 title="COOT Staking"
                 width="285px" description={<Typography color="#041836" variant="h1" weight="700">{""}</Typography>}    /></div>
@@ -342,7 +412,7 @@ console.log(parseInt((dataAllowance??"").toString()))
   >
   <PlanCard
       backgroundColor="#F0F8FF"
-      ctaButton={<Button onClick={()=>claimRewardsV1()} isFullWidth text="CLAIM" theme="primary"/>}
+      ctaButton={<div><Button onClick={()=>claimRewardsV1()} isFullWidth text="CLAIM" theme="primary"/> <Button style={{ marginTop: 4 }} onClick={() => claimRewardsV1()} isFullWidth text="Withdraw old" theme="outline" /></div>}
       description={<Typography color="#5B8DB9" variant="caption14" weight="550">Your Info</Typography>}
       features={[
         nftCount2+" Cooties",
@@ -374,7 +444,7 @@ console.log(parseInt((dataAllowance??"").toString()))
   >
   <PlanCard
       backgroundColor="#F0F8FF"
-      ctaButton={<Button  onClick={()=>claimRewardsV2()} isFullWidth text="CLAIM" theme="primary"/>}
+      ctaButton={<div><Button  onClick={()=>claimRewardsV2()} isFullWidth text="CLAIM" theme="primary"/><Button style={{ marginTop: 4 }} onClick={() => claimRewardsV1()} isFullWidth text="Withdraw old" theme="outline" /></div>}
       description={<Typography color="#5B8DB9" variant="caption14" weight="550">Your Info</Typography>}
       features={[
         nftCount+" Cooties",        
