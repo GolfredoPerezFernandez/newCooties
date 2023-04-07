@@ -166,7 +166,7 @@ const [pending,setPending]= React.useState<any>("0")
 
     };
   const claimRewardsV2 =async () => {
-
+return
 		
 
 			await  write?.()
@@ -181,7 +181,7 @@ const [pending,setPending]= React.useState<any>("0")
     };
     const claimRewardsV1 =async () => {
 
-		
+		return
 
 			await  writeV1?.()
 
