@@ -246,11 +246,11 @@ const [pending,setPending]= React.useState<any>([])
               setNFTCOUNT(data3v1)
 
               if(data2){ 
-                setRewardsV2(ethers.utils.formatEther((data2??"0").toString()).substring(0,6))
+                setRewardsV2(ethers.utils.formatEther((data2).toString()).substring(0,6))
 
               }
               if(data2v1){          
-                     setRewardsV1(ethers.utils.formatEther((data2v1??"0").toString()).substring(0,6))
+                     setRewardsV1(ethers.utils.formatEther((data2v1).toString()).substring(0,6))
 
 
               }
@@ -291,7 +291,7 @@ const [pending,setPending]= React.useState<any>([])
       }
     const handleDeposit =async () => { 
        if(ethAddress&&dataAllowance){
-       if(parseInt((dataAllowance??"").toString())>=parseInt(values.amount)){
+       if(parseInt((dataAllowance).toString())>=parseInt(values.amount)){
    
        await  writeDeposit?.()
    
@@ -394,7 +394,7 @@ const [pending,setPending]= React.useState<any>([])
                   label="CootCoin"
                   placeholder="100"
                   />
-                  {dataAllowance&&parseInt((dataAllowance).toString())>=parseInt(values.amount)? <Button disabled={!writeDeposit}  onClick={() => handleDeposit()} style={{ marginTop: 4 }} isFullWidth text="ADD FUNDS" theme="primary" />: <Button disabled={!handleApprove}  onClick={() => handleApprove()} style={{ marginTop: 4 }} isFullWidth text="APPROVE COOT" theme="primary" />}
+                  {dataAllowance&&parseInt(dataAllowance)>=parseInt(values.amount)? <Button disabled={!writeDeposit}  onClick={() => handleDeposit()} style={{ marginTop: 4 }} isFullWidth text="ADD FUNDS" theme="primary" />: <Button disabled={!handleApprove}  onClick={() => handleApprove()} style={{ marginTop: 4 }} isFullWidth text="APPROVE COOT" theme="primary" />}
                   <Button key={931} disabled={!writeClaimRewards} onClick={() => claimRewardsCoot()} style={{ marginTop: 4 }} isFullWidth text="CLAIM" theme="primary" /><Button key={911} onClick={() => handleWithdraw()} style={{ marginTop: 4 }} isFullWidth text="Withdraw" theme="secondary" /></div>}
                 features={[
 					"Your Deposited:"+ethers.utils.formatEther(dataUserInfo[0]),
@@ -407,7 +407,7 @@ const [pending,setPending]= React.useState<any>([])
                 horizontalLine
                 isCurrentBillingPeriod
                 isCurrentPlan
-                price={<Typography color="#041836" variant="h1" weight="700">{pending&&(pending??"0").toString().substring(0,6) + " COOT"}</Typography>}
+                price={<Typography color="#041836" variant="h1" weight="700">{pending&&pending.substring(0,6) + " COOT"}</Typography>}
                 themeColor="#00D1AE"
                 title="COOT Staking"
                 width="285px" description={<Typography color="#041836" variant="h1" weight="700">{""}</Typography>}    /></div>
