@@ -103,9 +103,9 @@ export default function Staking() {
   const { data:dataV1,write:writeV1 } = useContractWrite(configv1)
 
   const { data, isLoading, isSuccess, write } = useContractWrite(config)
-const [rewardsv2,setRewardsV2]= React.useState<any>("0")
-const [rewardsv1,setRewardsV1]= React.useState<any>("0")
-const [balanceOf,setBalance]= React.useState<any>("0")
+const [rewardsv2,setRewardsV2]= React.useState<any>("")
+const [rewardsv1,setRewardsV1]= React.useState<any>("")
+const [balanceOf,setBalance]= React.useState<any>("")
 
 const [pending,setPending]= React.useState<any>("")
 
