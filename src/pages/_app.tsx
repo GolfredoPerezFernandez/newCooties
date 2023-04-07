@@ -124,12 +124,12 @@ const handleCloseNavMenu = () => {
                     {page.text}
                   </Typography>
                 </Link> 
-                : 
+                : <li key={page.text}>
                  <Link key={page.text} href={page.href}> 
                   <Typography key={page.text} color="white" textAlign="center">
                   {page.text}
                     </Typography>
-                   </Link>  
+                   </Link>  </li>
                 }
                           
 
