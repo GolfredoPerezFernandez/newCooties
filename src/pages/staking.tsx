@@ -105,7 +105,8 @@ export default function Staking() {
   
       },
       onError(data){
-      
+		setLoading(false)
+
         console.log('error', data)
     }
   
@@ -319,18 +320,18 @@ return
     }
     },[dataApprove])
     const handleApprove =async () => {
+		try{  
 setLoading(true)
        await  writeApprove?.()
-
+	}catch{ setLoading(false)
+	}
       }
     const handleDeposit =async () => { 
        if(ethAddress&&dataAllowance){
-       if(parseInt((dataAllowance).toString())>=parseInt(values.amount)){
    
        await  writeDeposit?.()
    
      
-      }
    
        };  }
   const handleChanges = (prop: keyof any) => (event: React.ChangeEvent<any>) => {
