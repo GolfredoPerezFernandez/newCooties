@@ -119,6 +119,7 @@ const [rewardsv2,setRewardsV2]= React.useState<any>("0")
 const [rewardsv1,setRewardsV1]= React.useState<any>("0")
 const [balanceOf,setBalance]= React.useState<any>("0")
 const [userInfo,setUserInfo]= React.useState<any>("0")
+const [loading,setLoading]= React.useState<any>(false)
 
 
 const [pending,setPending]= React.useState<any>("0")
@@ -127,6 +128,7 @@ const [pending,setPending]= React.useState<any>("0")
       address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
       abi: stakingABI,
 	  watch: true,
+	  structuralSharing: (prev, next) => (prev === next ? prev : next),
 
       args:[ethAddress],
       functionName: 'calculateRewards',
@@ -136,6 +138,7 @@ const [pending,setPending]= React.useState<any>("0")
         address: '0xe4671844Fcb3cA9A80A1224B6f9A0A6c2Ba2a7d5',
         abi: erc20ABI,
 		watch: true,
+		structuralSharing: (prev, next) => (prev === next ? prev : next),
 
         args:[ethAddress,"0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd"],
         functionName: 'allowance',
@@ -144,6 +147,7 @@ const [pending,setPending]= React.useState<any>("0")
       address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
       abi: stakingABI,   
 	   watch: true,
+	   structuralSharing: (prev, next) => (prev === next ? prev : next),
 
       args:[ethAddress],
       functionName: 'getNftCount',
@@ -152,6 +156,7 @@ const [pending,setPending]= React.useState<any>("0")
         address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
         abi: stakingABI,    
 		watch: true,
+		structuralSharing: (prev, next) => (prev === next ? prev : next),
 
         args:[ethAddress],
         functionName: 'getNftTier',
@@ -192,7 +197,7 @@ return
 		address: '0xe4671844Fcb3cA9A80A1224B6f9A0A6c2Ba2a7d5',
 		abi: erc20ABI,
 		args:["0x008798daAF682d9716Ba9B47dCfD90a503bd9b66"],   
-		 watch: true,
+		 structuralSharing: (prev, next) => (prev === next ? prev : next),
 
 		functionName: 'balanceOf',
 		})
@@ -203,22 +208,27 @@ return
 	  
       args:["0x008798daAF682d9716Ba9B47dCfD90a503bd9b66",values.amount],
       functionName: 'approve',
+	  enabled:false,
        async onSuccess(data) {	
+		await handleDeposit()
+		setLoading(false)
+
         },
         onError(data){
-        
+			setLoading(false)
+
           console.log('error', data)
       },
       })  
-      const { data:dataApprove,write:writeApprove} = useContractWrite({...configApprove,async onMutate(){	
-        
-       }})
+      const { data:dataApprove,write:writeApprove} = useContractWrite({...configApprove,})
 
 	   const { data:dataPending } = useContractRead({
 		address: '0x008798daAF682d9716Ba9B47dCfD90a503bd9b66',
 		abi: masterDark,
 		args:[0,ethAddress],   
-		 watch: true,
+		 watch: true,   
+		 structuralSharing: (prev, next) => (prev === next ? prev : next),
+
 
 		functionName: 'pendingReward',
 		})
@@ -226,6 +236,7 @@ return
 		address: '0x008798daAF682d9716Ba9B47dCfD90a503bd9b66',
 		abi: masterDark,  
 		  watch: true,
+		  structuralSharing: (prev, next) => (prev === next ? prev : next),
 
 		args:[0,ethAddress],
 		functionName: 'userInfo',
@@ -233,7 +244,9 @@ return
     const { data:data2v1 } = useContractRead({
       address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
       abi: stakingABI,
-      args:[ethAddress],    watch: true,
+      args:[ethAddress], 
+	     watch: true,
+		 structuralSharing: (prev, next) => (prev === next ? prev : next),
 
       functionName: 'calculateRewards',
       })
@@ -241,7 +254,9 @@ return
     const { data:data3v1 } = useContractRead({
       address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
       abi: stakingABI,
-      args:[ethAddress],    watch: true,
+      args:[ethAddress], 
+	     watch: true,
+		 structuralSharing: (prev, next) => (prev === next ? prev : next),
 
       functionName: 'getNftCount',
       })
@@ -250,6 +265,7 @@ return
         abi: stakingABI,
         args:[ethAddress],
 		watch: true,
+		structuralSharing: (prev, next) => (prev === next ? prev : next),
 
         functionName: 'getNftTier',
         })
@@ -303,9 +319,9 @@ return
     }
     },[dataApprove])
     const handleApprove =async () => {
-
+setLoading(true)
        await  writeApprove?.()
-      
+
       }
     const handleDeposit =async () => { 
        if(ethAddress&&dataAllowance){
@@ -413,7 +429,7 @@ return
                   label="CootCoin"
                   placeholder="100"
                   />
-                  {dataAllowance&&parseInt(dataAllowance)>=parseInt(values.amount)? <Button  key={"3371"} disabled={!writeDeposit}  onClick={() => handleDeposit()} style={{ marginTop: 4 }} isFullWidth text="ADD FUNDS" theme="primary" />: <Button  key={"31131"} disabled={!handleApprove}  onClick={() => handleApprove()} style={{ marginTop: 4 }} isFullWidth text="APPROVE COOT" theme="primary" />}
+                  <Button  key={"31131"} disabled={loading}  onClick={() => handleApprove()} style={{ marginTop: 4 }} isFullWidth text="APPROVE COOT" theme="primary" />
                   <Button key={"931"} disabled={!writeClaimRewards} onClick={() => claimRewardsCoot()} style={{ marginTop: 4 }} isFullWidth text="CLAIM" theme="primary" /><Button key={"2334"} onClick={() => handleWithdraw()} style={{ marginTop: 4 }} isFullWidth text="Withdraw" theme="secondary" /></div>}
                 features={[
 					"Your Deposit:"+ethers.utils.formatEther(userInfo[0].toString()),
