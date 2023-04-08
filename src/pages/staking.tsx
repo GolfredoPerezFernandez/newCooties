@@ -228,7 +228,7 @@ React.useEffect(()=>{
 		setTimeout(()=>{
 
 			writeDeposit?.() 
-		},5000)
+		},9000)
 		  
 	}	}
 },[isSuccessApprove])
@@ -244,9 +244,9 @@ React.useEffect(()=>{
 	   const { data:dataUserInfo } = useContractRead({
 		address: '0x008798daAF682d9716Ba9B47dCfD90a503bd9b66',
 		abi: masterDark,  
+		watch: true,
 		  structuralSharing: (prev, next) => (prev === next ? prev : next),
 
-		  watch: true,
 		args:[0,ethAddress],
 		functionName: 'userInfo',
 		})
@@ -271,7 +271,6 @@ React.useEffect(()=>{
         address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
         abi: stakingABI,
         args:[ethAddress],
-		watch: true,
 		structuralSharing: (prev, next) => (prev === next ? prev : next),
 
         functionName: 'getNftTier',
@@ -309,7 +308,7 @@ React.useEffect(()=>{
         init()
       }
 
-    },[ethAddress])
+    },[ethAddress,dataUserInfo])
 
     React.useEffect(()=>{		
 
