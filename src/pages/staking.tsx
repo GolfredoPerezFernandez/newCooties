@@ -104,6 +104,7 @@ export default function Staking() {
       async onSuccess(data) {	
   
       },
+	  
       onError(data){
 		setLoading(false)
 
@@ -210,11 +211,15 @@ return
       args:["0x008798daAF682d9716Ba9B47dCfD90a503bd9b66",values.amount],
       functionName: 'approve',
 	  enabled:false,
-       async onSuccess(data) {	
+       async onSuccess() {	
+
 		await handleDeposit()
 		setLoading(false)
-
         },
+		async onSettled(){ 
+			
+			setLoading(false)
+		},
         onError(data){
 			setLoading(false)
 
@@ -320,10 +325,12 @@ return
     }
     },[dataApprove])
     const handleApprove =async () => {
+		setLoading(true)
 		try{  
-setLoading(true)
        await  writeApprove?.()
-	}catch{ setLoading(false)
+	   setLoading(false)
+	}catch{
+		setLoading(false)
 	}
       }
     const handleDeposit =async () => { 
