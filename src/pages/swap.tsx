@@ -44,6 +44,7 @@ const SwapWidget = dynamic(() => import('@pangolindex/components').then((module)
 export default function Swap() { 
   const [ethAddress,setEthAddress]= React.useState<any>("0")
 
+  const [web3jsProvider, setWeb3jsProvider] = React.useState<any>();
   const useStyles = makeStyles((theme :any)=> ({
     root: {
       width: '100%',
@@ -114,7 +115,7 @@ if(address){
       alignItems:"center",
     }}
   >
-    <PangolinProvider account={ethAddress} chainId={19} library={""}>
+    <PangolinProvider account={ethAddress} chainId={19} library={web3jsProvider}>
 	  <SwapWidget isLimitOrderVisible={false} />
     </PangolinProvider> 
 
