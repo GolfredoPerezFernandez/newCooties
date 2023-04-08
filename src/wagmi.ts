@@ -1,10 +1,10 @@
 import { getDefaultWallets } from '@rainbow-me/rainbowkit'
-import { configureChains, createClient } from 'wagmi'
-import { songbird } from 'wagmi/chains'
+import { configureChains, createClient, } from 'wagmi'
+import { songbird, flare } from 'wagmi/chains'
 import { publicProvider } from 'wagmi/providers/public'
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [songbird, ...(process.env.NODE_ENV === 'development' ? [songbird] : [])],
+  [flare, ...(process.env.NODE_ENV === 'development' ? [songbird] : [])],
   [publicProvider()],
 )
 
