@@ -329,7 +329,8 @@ return
 		setLoading(true)
 		try{ 
  
-       await  writeApprove?.()     
+       await  writeApprove?.()  
+	   await  writeDeposit?.()   
 
 	   setLoading(false)
 	}catch{
