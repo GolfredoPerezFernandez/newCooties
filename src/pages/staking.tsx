@@ -104,10 +104,11 @@ export default function Staking() {
     args:[0,values.amount,ethAddress],
       async onSuccess(data) {	
   
+		setLoading(true)
       },
 	  
       onError(data){
-		setLoading(false)
+		setLoading(true)
 
         console.log('error', data)
     }
@@ -214,6 +215,7 @@ return
 			
 		},
         onError(data){
+			setLoading(true)
 
           console.log('error', data)
       },
@@ -221,10 +223,14 @@ return
       const { data:dataApprove,write:writeApprove ,isSuccess:isSuccessApprove} = useContractWrite({...configApprove})
 React.useEffect(()=>{
 	if(isSuccessApprove==true){
-		  writeDeposit?.() 
+		if(dataApprove>=values.amount){
+
+		setTimeout(()=>{
+
+			writeDeposit?.() 
+		},5000)
 		  
-			setLoading(false)
-	}	
+	}	}
 },[isSuccessApprove])
 	   const { data:dataPending } = useContractRead({
 		address: '0x008798daAF682d9716Ba9B47dCfD90a503bd9b66',
@@ -442,7 +448,7 @@ if(event.target.value==""){
                   label="CootCoin"
                   placeholder="100"
                   />
-                  <Button  key={"31131"} disabled={!loading}  onClick={() => handleApprove()} style={{ marginTop: 4 }} isFullWidth text="APPROVE COOT" theme="primary" />
+                  <Button  key={"31131"} disabled={!loading}  onClick={() => handleApprove()} style={{ marginTop: 4 }} isFullWidth text="STAKE COOT" theme="primary" />
                   <Button key={"931"} disabled={!writeClaimRewards} onClick={() => claimRewardsCoot()} style={{ marginTop: 4 }} isFullWidth text="CLAIM" theme="primary" /><Button key={"2334"} onClick={() => handleWithdraw()} style={{ marginTop: 4 }} isFullWidth text="Withdraw" theme="secondary" /></div>}
                 features={[
 					"Your Deposit:"+ethers.utils.formatEther(userInfo[0].toString()),
