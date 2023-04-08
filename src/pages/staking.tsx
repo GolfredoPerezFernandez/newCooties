@@ -214,7 +214,6 @@ return
 	  enabled:false,
        async onSuccess() {	
 
-		await handleDeposit()
         },
 		async onSettled(){ 
 
@@ -276,6 +275,11 @@ return
 
         functionName: 'getNftTier',
         })
+		React.useEffect(()=>{ 
+
+		   },[dataAllowance])
+
+
     React.useEffect(()=>{ 
     async  function init(){
 
