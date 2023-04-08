@@ -326,7 +326,6 @@ React.useEffect(()=>{
 		
       async function init(){
 
-        await  writeDeposit?.()
       }
       if(dataApprove){
        
