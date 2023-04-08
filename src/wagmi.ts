@@ -4,7 +4,7 @@ import { songbird, flare } from 'wagmi/chains'
 import { publicProvider } from 'wagmi/providers/public'
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [flare, ...(process.env.NODE_ENV === 'development' ? [songbird] : [])],
+  [flare, ...(process.env.NODE_ENV === 'development' ? [songbird] : [songbird])],
   [publicProvider()],
 )
 
