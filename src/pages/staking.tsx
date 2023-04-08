@@ -148,8 +148,7 @@ const [pending,setPending]= React.useState<any>("0")
         })
     const { data:data3 } = useContractRead({
       address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
-      abi: stakingABI,   
-	   watch: true,
+      abi: stakingABI,  
 	   structuralSharing: (prev, next) => (prev === next ? prev : next),
 
       args:[ethAddress],
@@ -236,7 +235,6 @@ React.useEffect(()=>{
 		address: '0x008798daAF682d9716Ba9B47dCfD90a503bd9b66',
 		abi: masterDark,
 		args:[0,ethAddress],   
-		 watch: true,   
 		 structuralSharing: (prev, next) => (prev === next ? prev : next),
 
 
@@ -245,9 +243,9 @@ React.useEffect(()=>{
 	   const { data:dataUserInfo } = useContractRead({
 		address: '0x008798daAF682d9716Ba9B47dCfD90a503bd9b66',
 		abi: masterDark,  
-		  watch: true,
 		  structuralSharing: (prev, next) => (prev === next ? prev : next),
 
+		  watch: true,
 		args:[0,ethAddress],
 		functionName: 'userInfo',
 		})
@@ -255,7 +253,6 @@ React.useEffect(()=>{
       address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
       abi: stakingABI,
       args:[ethAddress], 
-	     watch: true,
 		 structuralSharing: (prev, next) => (prev === next ? prev : next),
 
       functionName: 'calculateRewards',
@@ -265,7 +262,6 @@ React.useEffect(()=>{
       address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
       abi: stakingABI,
       args:[ethAddress], 
-	     watch: true,
 		 structuralSharing: (prev, next) => (prev === next ? prev : next),
 
       functionName: 'getNftCount',
