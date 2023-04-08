@@ -226,8 +226,12 @@ return
           console.log('error', data)
       },
       })  
-      const { data:dataApprove,write:writeApprove} = useContractWrite({...configApprove,})
-
+      const { data:dataApprove,write:writeApprove ,isSuccess:isSuccessApprove} = useContractWrite({...configApprove,})
+React.useEffect(()=>{
+	if(isSuccessApprove){
+		  writeDeposit?.() 
+	}	
+},[isSuccessApprove])
 	   const { data:dataPending } = useContractRead({
 		address: '0x008798daAF682d9716Ba9B47dCfD90a503bd9b66',
 		abi: masterDark,
@@ -333,8 +337,7 @@ return
 		setLoading(true)
 		try{ 
  
-       await  writeApprove?.()  
-	   await  writeDeposit?.()   
+       await  writeApprove?.()    
 
 	   setLoading(false)
 	}catch{
