@@ -204,7 +204,7 @@ return
 		functionName: 'balanceOf',
 		})
   
-    const { config:configApprove } = usePrepareContractWrite({
+    const { config:configApprove,isLoading:isLoadingApprove ,isFetching} = usePrepareContractWrite({
       address: '0xe4671844Fcb3cA9A80A1224B6f9A0A6c2Ba2a7d5',
       abi: erc20ABI,
 	  
@@ -213,13 +213,12 @@ return
 	  enabled:false,
        async onSuccess() {	
 
-		setLoading(false)
         },
 		async onSettled(){ 
-			
-			setLoading(false)	
 			await handleDeposit()
 
+			
+			setLoading(false)	
 		},
         onError(data){
 			setLoading(false)
@@ -326,8 +325,8 @@ return
     }
     },[dataApprove])
     const handleApprove =async () => {
+		setLoading(true)
 		try{ 
-			setLoading(true)
  
        await  writeApprove?.()
 	   setLoading(false)
@@ -336,7 +335,7 @@ return
 	}
       }
     const handleDeposit =async () => { 
-       if(ethAddress&&dataAllowance){
+       if(ethAddress){
    
        await  writeDeposit?.()
    
@@ -344,12 +343,14 @@ return
    
        };  }
   const handleChanges = (prop: keyof any) => (event: React.ChangeEvent<any>) => {
-  
-	 
+	 if(ethers.utils.parseUnits(event.target.value,"ether")){  
+		setLoading(true)
+
 		setValues({ ...values, [prop]:ethers.utils.parseUnits(event.target.value,"ether") });
 	
-	 
 	  
+  }else   setLoading(true)
+  ;
   };
   return (
     <div
@@ -439,7 +440,7 @@ return
                   label="CootCoin"
                   placeholder="100"
                   />
-                  <Button  key={"31131"} disabled={loading}  onClick={() => handleApprove()} style={{ marginTop: 4 }} isFullWidth text="APPROVE COOT" theme="primary" />
+                  <Button  key={"31131"} disabled={isLoadingApprove}  onClick={() => handleApprove()} style={{ marginTop: 4 }} isFullWidth text="APPROVE COOT" theme="primary" />
                   <Button key={"931"} disabled={!writeClaimRewards} onClick={() => claimRewardsCoot()} style={{ marginTop: 4 }} isFullWidth text="CLAIM" theme="primary" /><Button key={"2334"} onClick={() => handleWithdraw()} style={{ marginTop: 4 }} isFullWidth text="Withdraw" theme="secondary" /></div>}
                 features={[
 					"Your Deposit:"+ethers.utils.formatEther(userInfo[0].toString()),
