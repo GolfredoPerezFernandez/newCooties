@@ -130,7 +130,6 @@ const [pending,setPending]= React.useState<any>("0")
     const { data:data2 } = useContractRead({
       address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
       abi: stakingABI,
-	  watch: true,
 	  structuralSharing: (prev, next) => (prev === next ? prev : next),
 
       args:[ethAddress],
@@ -140,7 +139,6 @@ const [pending,setPending]= React.useState<any>("0")
       const { data:dataAllowance } = useContractRead<any,any,any>({
         address: '0xe4671844Fcb3cA9A80A1224B6f9A0A6c2Ba2a7d5',
         abi: erc20ABI,
-		watch: true,
 		structuralSharing: (prev, next) => (prev === next ? prev : next),
 
         args:[ethAddress,"0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd"],
@@ -157,7 +155,6 @@ const [pending,setPending]= React.useState<any>("0")
       const { data:data4 } = useContractRead({
         address: '0x9A89D078bb95fC15adE9f9aC0a9D803036192Acd',
         abi: stakingABI,    
-		watch: true,
 		structuralSharing: (prev, next) => (prev === next ? prev : next),
 
         args:[ethAddress],
