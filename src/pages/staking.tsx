@@ -213,12 +213,13 @@ return
 	  enabled:false,
        async onSuccess() {	
 
-		await handleDeposit()
 		setLoading(false)
         },
 		async onSettled(){ 
 			
-			setLoading(false)
+			setLoading(false)	
+			await handleDeposit()
+
 		},
         onError(data){
 			setLoading(false)
@@ -325,8 +326,9 @@ return
     }
     },[dataApprove])
     const handleApprove =async () => {
-		setLoading(true)
-		try{  
+		try{ 
+			setLoading(true)
+ 
        await  writeApprove?.()
 	   setLoading(false)
 	}catch{
