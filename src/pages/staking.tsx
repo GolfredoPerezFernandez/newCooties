@@ -196,6 +196,7 @@ return
 	const { data:dataBalance } = useContractRead<any,any,any>({
 		address: '0xe4671844Fcb3cA9A80A1224B6f9A0A6c2Ba2a7d5',
 		abi: erc20ABI,
+		watch:true,
 		args:["0x008798daAF682d9716Ba9B47dCfD90a503bd9b66"],   
 		 structuralSharing: (prev, next) => (prev === next ? prev : next),
 
@@ -282,7 +283,13 @@ React.useEffect(()=>{
 
     React.useEffect(()=>{ 
     async  function init(){
-
+		if(dataPending){
+			setPending(ethers.utils.formatEther(parseFloat((dataPending??"0").toString()).toString()))
+		}
+		
+		if(dataBalance){
+			setBalance(ethers.utils.formatEther(dataBalance.toString()))
+		}
 		if(dataUserInfo){ 
 			setUserInfo(dataUserInfo)  
 
@@ -308,26 +315,8 @@ React.useEffect(()=>{
         init()
       }
 
-    },[ethAddress,dataUserInfo])
+    },[ethAddress,dataUserInfo,dataApprove,balanceOf,dataPending,dataBalance])
 
-    React.useEffect(()=>{		
-
-		if(dataPending){
-			setPending(ethers.utils.formatEther(parseFloat((dataPending??"0").toString()).toString()))
-		}
-		
-		if(dataBalance){
-			setBalance(ethers.utils.formatEther(dataBalance.toString()))
-		}
-		
-      async function init(){
-
-      }
-      if(dataApprove){
-       
-        init()
-    }
-    },[dataApprove,dataPending])
     const handleApprove =async () => {
 		try{ 
  
