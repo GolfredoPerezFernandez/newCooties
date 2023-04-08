@@ -201,31 +201,29 @@ return
 		functionName: 'balanceOf',
 		})
   
-    const { config:configApprove,isLoading:isLoadingApprove ,isFetching} = usePrepareContractWrite({
+    const { config:configApprove} = usePrepareContractWrite({
       address: '0xe4671844Fcb3cA9A80A1224B6f9A0A6c2Ba2a7d5',
       abi: erc20ABI,
-	  
       args:["0x008798daAF682d9716Ba9B47dCfD90a503bd9b66",values.amount],
       functionName: 'approve',
-	  enabled:false,
        async onSuccess() {	
 
         },
 		async onSettled(){ 
 
 			
-			setLoading(false)	
 		},
         onError(data){
-			setLoading(false)
 
           console.log('error', data)
       },
       })  
-      const { data:dataApprove,write:writeApprove ,isSuccess:isSuccessApprove} = useContractWrite({...configApprove,})
+      const { data:dataApprove,write:writeApprove ,isSuccess:isSuccessApprove} = useContractWrite({...configApprove})
 React.useEffect(()=>{
-	if(isSuccessApprove){
+	if(isSuccessApprove==true){
 		  writeDeposit?.() 
+		  
+			setLoading(false)
 	}	
 },[isSuccessApprove])
 	   const { data:dataPending } = useContractRead({
@@ -326,9 +324,9 @@ React.useEffect(()=>{
     }
     },[dataApprove])
     const handleApprove =async () => {
-		setLoading(true)
 		try{ 
  
+			setLoading(true)
        await  writeApprove?.()    
 
 	   setLoading(false)
