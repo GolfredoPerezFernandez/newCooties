@@ -214,9 +214,9 @@ return
 	  enabled:false,
        async onSuccess() {	
 
+		await handleDeposit()
         },
 		async onSettled(){ 
-			await handleDeposit()
 
 			
 			setLoading(false)	
@@ -329,7 +329,8 @@ return
 		setLoading(true)
 		try{ 
  
-       await  writeApprove?.()
+       await  writeApprove?.()     
+
 	   setLoading(false)
 	}catch{
 		setLoading(false)
