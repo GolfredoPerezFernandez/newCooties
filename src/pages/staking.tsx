@@ -286,11 +286,11 @@ return
     React.useEffect(()=>{		
 
 		if(dataPending){
-			setPending(ethers.utils.formatEther(parseFloat(dataPending.toString())))
+			setPending(ethers.utils.formatEther(parseFloat((dataPending??"0").toString()).toString()))
 		}
 		
 		if(dataBalance){
-			setBalance(ethers.utils.formatEther(dataBalance))
+			setBalance(ethers.utils.formatEther(dataBalance.toString()))
 		}
 		
       async function init(){
