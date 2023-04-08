@@ -96,9 +96,10 @@ export default function Staking() {
   
     })
   const { data:dataDeposit,write:writeDeposit } = useContractWrite({
-    mode: 'recklesslyUnprepared',
-    address: '0x008798daAF682d9716Ba9B47dCfD90a503bd9b66',
+	mode: 'recklesslyUnprepared',
+	address: '0x008798daAF682d9716Ba9B47dCfD90a503bd9b66',
     abi: masterDark,
+
     functionName: 'deposit',
     args:[0,values.amount,ethAddress],
       async onSuccess(data) {	
@@ -343,14 +344,16 @@ return
    
        };  }
   const handleChanges = (prop: keyof any) => (event: React.ChangeEvent<any>) => {
-	 if(ethers.utils.parseUnits(event.target.value,"ether")){  
 		setLoading(true)
+if(event.target.value==""){
+	setLoading(false)
 
-		setValues({ ...values, [prop]:ethers.utils.parseUnits(event.target.value,"ether") });
+}else{
+	setValues({ ...values, [prop]:ethers.utils.parseUnits(event.target.value,"ether") });
+
+}
 	
 	  
-  }else   setLoading(true)
-  ;
   };
   return (
     <div
@@ -440,7 +443,7 @@ return
                   label="CootCoin"
                   placeholder="100"
                   />
-                  <Button  key={"31131"} disabled={isLoadingApprove}  onClick={() => handleApprove()} style={{ marginTop: 4 }} isFullWidth text="APPROVE COOT" theme="primary" />
+                  <Button  key={"31131"} disabled={!loading}  onClick={() => handleApprove()} style={{ marginTop: 4 }} isFullWidth text="APPROVE COOT" theme="primary" />
                   <Button key={"931"} disabled={!writeClaimRewards} onClick={() => claimRewardsCoot()} style={{ marginTop: 4 }} isFullWidth text="CLAIM" theme="primary" /><Button key={"2334"} onClick={() => handleWithdraw()} style={{ marginTop: 4 }} isFullWidth text="Withdraw" theme="secondary" /></div>}
                 features={[
 					"Your Deposit:"+ethers.utils.formatEther(userInfo[0].toString()),
