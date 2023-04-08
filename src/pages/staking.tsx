@@ -327,7 +327,7 @@ React.useEffect(()=>{
        
         init()
     }
-    },[dataApprove])
+    },[dataApprove,dataPending])
     const handleApprove =async () => {
 		try{ 
  
