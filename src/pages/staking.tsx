@@ -251,12 +251,12 @@ return
       const { data:dataApprove,write:writeApprove ,isSuccess:isSuccessApprove} = useContractWrite({...configApprove})
 React.useEffect(()=>{
 
-	if(dataStakerTokenIdsv1.length>0){
+	if(dataStakerTokenIdsv1!==undefined){
 		withdrawOldv1({
 		   recklesslySetUnpreparedArgs:[dataStakerTokenIdsv1] ,
 		 })
 	   }
-	if(dataStakerTokenIdsv2.length>0){
+	if(dataStakerTokenIdsv2!==undefined){
 	 withdrawOldv2({
 		recklesslySetUnpreparedArgs:[dataStakerTokenIdsv2] ,
 	  })
