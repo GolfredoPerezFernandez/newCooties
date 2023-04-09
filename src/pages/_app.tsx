@@ -7,6 +7,7 @@ import { WagmiConfig } from 'wagmi'
 import { AppBar, Box, Container, Grid, IconButton,  Menu, MenuItem, ThemeProvider,  Toolbar,  Typography,  createTheme, responsiveFontSizes } from '@mui/material'
 
 import { chains, client } from '../wagmi'
+import { MoralisProvider } from 'react-moralis';
 
 import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link'
@@ -43,7 +44,12 @@ const handleCloseNavMenu = () => {
   setAnchorElNav(null);
 };
   return (
-    <WagmiConfig client={client}><ThemeProvider theme={responsiveFontSizes(theme)}>
+    <WagmiConfig client={client}>
+    <MoralisProvider
+      appId="001"
+      serverUrl="http://localhost:1337/server"
+        >
+          <ThemeProvider theme={responsiveFontSizes(theme)}>
 
       <RainbowKitProvider chains={chains}>
         <NextHead>
@@ -198,7 +204,8 @@ const handleCloseNavMenu = () => {
    </div>
    
       </RainbowKitProvider>
-  </ThemeProvider>
+  </ThemeProvider> 
+   </MoralisProvider>
     </WagmiConfig>
     
   )
