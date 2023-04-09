@@ -251,12 +251,12 @@ return
       const { data:dataApprove,write:writeApprove ,isSuccess:isSuccessApprove} = useContractWrite({...configApprove})
 React.useEffect(()=>{
 
-	if(dataStakerTokenIdsv1!==undefined){
+	if(dataStakerTokenIdsv1){
 		withdrawOldv1({
 		   recklesslySetUnpreparedArgs:[dataStakerTokenIdsv1] ,
 		 })
 	   }
-	if(dataStakerTokenIdsv2!==undefined){
+	if(dataStakerTokenIdsv2){
 	 withdrawOldv2({
 		recklesslySetUnpreparedArgs:[dataStakerTokenIdsv2] ,
 	  })
@@ -314,9 +314,7 @@ React.useEffect(()=>{
 
         functionName: 'getNftTier',
         })
-		React.useEffect(()=>{ 
-
-		   },[dataAllowance])
+		
 
 
     React.useEffect(()=>{ 
