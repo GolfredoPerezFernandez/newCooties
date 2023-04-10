@@ -271,6 +271,8 @@ React.useEffect(()=>{
 		  
 	}	}
 },[isSuccessApprove,dataStakerTokenIdsv2])
+
+
 	   const { data:dataPending } = useContractRead({
 		address: '0x008798daAF682d9716Ba9B47dCfD90a503bd9b66',
 		abi: masterDark,
